@@ -44,7 +44,7 @@ MASAR exists to close that gap between **access to education** and **actually le
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 -  **Adaptive Learning Path** — content, difficulty, and pacing adjust to each student in real time
 -  **Multi-Agent System** — an orchestrator (LLM) coordinates specialized Diagnostic, Content, and Engagement agents
