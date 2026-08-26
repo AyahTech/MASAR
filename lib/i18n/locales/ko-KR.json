@@ -6,8 +6,10 @@
     "loading": "로딩 중..."
   },
   "home": {
-    "slogan": "멀티 에이전트 인터랙티브 교실에서 펼치는 생성형 학습",
-    "greetingWithName": "안녕하세요, {{name}}!"
+    "heroTitlePrefix": "Your ",
+    "heroTitleHighlight": "path",
+    "heroTitleSuffix": " to mastering every course.",
+    "greetingWithName": "Hi, {{name}}"
   },
   "toolbar": {
     "pdfParser": "파서",
@@ -1840,9 +1842,58 @@
     "speed": "속도",
     "language": "언어"
   },
-  "accessCode": {
-    "title": "접근 코드 입력",
-    "placeholder": "접근 코드",
-    "error": "유효하지 않은 접근 코드입니다. 다시 시도해 주세요."
+  "discover": {
+    "tabDiscover": "Discover",
+    "tabMyCourses": "My Courses",
+    "filterAll": "All",
+    "filterMath": "Mathematics",
+    "filterCS": "Computer Science",
+    "filterScience": "Sciences",
+    "filterArabic": "Arabic & Humanities",
+    "filterBusiness": "Business",
+    "views": "{{count}} views",
+    "students": "{{count}} students",
+    "courses": {
+      "limits": {
+        "title": "Limits & Continuity",
+        "description": "Master one-sided limits, asymptotes, and continuity with visual, step-by-step walkthroughs.",
+        "tag": "Mathematics"
+      },
+      "db": {
+        "title": "Database Normalization",
+        "description": "Turn messy spreadsheets into clean relational tables, one normal form at a time.",
+        "tag": "Computer Science",
+        "table1": "Students",
+        "row1": "id · name · major",
+        "table2": "Enrollments",
+        "row2": "student_id · course_id",
+        "table3": "Courses",
+        "row3": "id · title · credits",
+        "panelLabel": "Normal Form"
+      },
+      "bio": {
+        "title": "Cell Structure",
+        "description": "Explore organelles layer by layer, from membrane to nucleus.",
+        "tag": "Biology"
+      },
+      "phys": {
+        "title": "Newton's Laws",
+        "description": "Feel the push and pull behind every motion problem.",
+        "tag": "Physics"
+      },
+      "arabic": {
+        "title": "Arabic Morphology — الصرف",
+        "description": "Break words to their root pattern, in Arabic and English side by side.",
+        "tag": "Arabic Language",
+        "rootLetters": "ك ت ب",
+        "pattern1": "فَعَلَ",
+        "pattern2": "كَاتِب"
+      },
+      "biz": {
+        "title": "Mean & Variance",
+        "description": "Turn raw data into decisions with core statistical measures.",
+        "tag": "Business"
+      }
+    }
   }
 }

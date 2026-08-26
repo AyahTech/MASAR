@@ -8,7 +8,6 @@ import {
   Check,
   ChevronDown,
   ChevronRight,
-  Clock,
   Copy,
   Folder,
   FolderPlus,
@@ -25,7 +24,6 @@ import {
   Sparkles,
   Atom,
   X,
-  Presentation,
   Loader2,
   BookOpen,
 } from 'lucide-react';
@@ -84,6 +82,7 @@ import { FolderCard } from '@/components/discovery/folder-card';
 import { NewFolderDialog } from '@/components/discovery/folder-dialogs';
 import { PrebuiltClassroomsDialog } from '@/components/discovery/prebuilt-classrooms-dialog';
 import { MoveToFolderMenu } from '@/components/discovery/move-to-folder-menu';
+import { DiscoverCatalog, type DiscoverFilter } from '@/components/discovery/discover-catalog';
 import { SlideThumbnail } from '@/components/slide-renderer/SlideThumbnail';
 import type { Slide } from '@openmaic/dsl';
 import { useMediaGenerationStore } from '@/lib/store/media-generation';
@@ -95,11 +94,12 @@ import { useImportClassroom } from '@/lib/import/use-import-classroom';
 import { isPptxImportEnabled, shouldShowVocationalTestUi } from '@/lib/config/feature-flags';
 import { useImportPptx } from '@/lib/import/use-import-pptx';
 import { InteractiveModeButton } from '@/components/generation/interactive-mode-button';
+import './masar-home.css';
 
 const log = createLogger('Home');
 
 const WEB_SEARCH_STORAGE_KEY = 'webSearchEnabled';
-const RECENT_OPEN_STORAGE_KEY = 'recentClassroomsOpen';
+const RECENT_OPEN_STORAGE_KEY = 'recentClassroomsOpen:v2';
 const INTERACTIVE_MODE_STORAGE_KEY = 'interactiveModeEnabled';
 
 // PPTX import is still scaffolding: `useImportPptx` has no `onImported` consumer
@@ -152,6 +152,10 @@ function HomePage() {
       /* ignore */
     }
   };
+
+  // Catalog tab + discover filter state
+  const [catalogTab, setCatalogTab] = useState<'discover' | 'mycourses'>('discover');
+  const [discoverFilter, setDiscoverFilter] = useState<DiscoverFilter>('all');
 
   // Hydrate client-only state after mount (avoids SSR mismatch)
   useEffect(() => {
@@ -871,7 +875,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-[100dvh] w-full bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 flex flex-col items-center p-4 pt-16 md:p-8 md:pt-16 overflow-x-hidden">
+    <div className="masar-home min-h-[100dvh] w-full flex flex-col items-center overflow-x-hidden">
       <input
         ref={fileInputRef}
         type="file"
@@ -888,88 +892,91 @@ function HomePage() {
           className="hidden"
         />
       )}
-      {/* ═══ Top-right pill (unchanged) ═══ */}
-      <div
-        ref={toolbarRef}
-        className="fixed top-4 right-4 z-50 flex items-center gap-1 bg-white/60 dark:bg-gray-800/60 backdrop-blur-md px-2 py-1.5 rounded-full border border-gray-100/50 dark:border-gray-700/50 shadow-sm"
-      >
-        {/* Language Selector */}
-        <LanguageSwitcher onOpen={() => setThemeOpen(false)} />
-
-        <div className="w-[1px] h-4 bg-gray-200 dark:bg-gray-700" />
-
-        {/* Theme Selector */}
-        <div className="relative">
-          <button
-            onClick={() => {
-              setThemeOpen(!themeOpen);
-            }}
-            className="p-2 rounded-full text-gray-400 dark:text-gray-500 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-sm transition-all"
-          >
-            {theme === 'light' && <Sun className="w-4 h-4" />}
-            {theme === 'dark' && <Moon className="w-4 h-4" />}
-            {theme === 'system' && <Monitor className="w-4 h-4" />}
-          </button>
-          {themeOpen && (
-            <div className="absolute top-full mt-2 right-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden z-50 min-w-[140px]">
-              <button
-                onClick={() => {
-                  setTheme('light');
-                  setThemeOpen(false);
-                }}
-                className={cn(
-                  'w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2',
-                  theme === 'light' &&
-                    'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
-                )}
-              >
-                <Sun className="w-4 h-4" />
-                {t('settings.themeOptions.light')}
-              </button>
-              <button
-                onClick={() => {
-                  setTheme('dark');
-                  setThemeOpen(false);
-                }}
-                className={cn(
-                  'w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2',
-                  theme === 'dark' &&
-                    'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
-                )}
-              >
-                <Moon className="w-4 h-4" />
-                {t('settings.themeOptions.dark')}
-              </button>
-              <button
-                onClick={() => {
-                  setTheme('system');
-                  setThemeOpen(false);
-                }}
-                className={cn(
-                  'w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2',
-                  theme === 'system' &&
-                    'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
-                )}
-              >
-                <Monitor className="w-4 h-4" />
-                {t('settings.themeOptions.system')}
-              </button>
-            </div>
-          )}
+      {/* ═══ Header ═══ */}
+      <header className="masar-header">
+        <div className="masar-brand">
+          <img src="/MASAR-LOGO.png" alt="MASAR" />
         </div>
+        <div ref={toolbarRef} className="masar-header-actions">
+          {/* Language Selector */}
+          <div className="masar-lang-pill">
+            <LanguageSwitcher
+              onOpen={() => setThemeOpen(false)}
+              triggerClassName="text-[#6E6580] dark:text-[#9A93AC] hover:text-[#53358F] dark:hover:text-[#F4F1FC] active"
+            />
+          </div>
 
-        <div className="w-[1px] h-4 bg-gray-200 dark:bg-gray-700" />
+          {/* Theme Selector */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setThemeOpen(!themeOpen)}
+              className="masar-icon-btn"
+              aria-label={t('settings.theme')}
+            >
+              {theme === 'light' && <Sun className="w-4 h-4" />}
+              {theme === 'dark' && <Moon className="w-4 h-4" />}
+              {theme === 'system' && <Monitor className="w-4 h-4" />}
+            </button>
+            {themeOpen && (
+              <div className="absolute top-full mt-2 right-0 bg-white dark:bg-[#231A38] border border-[#EDE8F9] dark:border-white/10 rounded-lg shadow-lg overflow-hidden z-50 min-w-[140px]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTheme('light');
+                    setThemeOpen(false);
+                  }}
+                  className={cn(
+                    'w-full px-4 py-2 text-left text-sm hover:bg-[#F4F1FC] dark:hover:bg-white/5 transition-colors flex items-center gap-2',
+                    theme === 'light' && 'bg-[#F4F1FC] dark:bg-white/10 text-[#53358F] dark:text-[#8F87F1]',
+                  )}
+                >
+                  <Sun className="w-4 h-4" />
+                  {t('settings.themeOptions.light')}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTheme('dark');
+                    setThemeOpen(false);
+                  }}
+                  className={cn(
+                    'w-full px-4 py-2 text-left text-sm hover:bg-[#F4F1FC] dark:hover:bg-white/5 transition-colors flex items-center gap-2',
+                    theme === 'dark' && 'bg-[#F4F1FC] dark:bg-white/10 text-[#53358F] dark:text-[#8F87F1]',
+                  )}
+                >
+                  <Moon className="w-4 h-4" />
+                  {t('settings.themeOptions.dark')}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTheme('system');
+                    setThemeOpen(false);
+                  }}
+                  className={cn(
+                    'w-full px-4 py-2 text-left text-sm hover:bg-[#F4F1FC] dark:hover:bg-white/5 transition-colors flex items-center gap-2',
+                    theme === 'system' && 'bg-[#F4F1FC] dark:bg-white/10 text-[#53358F] dark:text-[#8F87F1]',
+                  )}
+                >
+                  <Monitor className="w-4 h-4" />
+                  {t('settings.themeOptions.system')}
+                </button>
+              </div>
+            )}
+          </div>
 
-        {/* Settings Button */}
-        <div className="relative">
+          {/* Settings Button */}
           <button
+            type="button"
             onClick={() => setSettingsOpen(true)}
-            className="p-2 rounded-full text-gray-400 dark:text-gray-500 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-sm transition-all group"
+            className="masar-icon-btn group"
+            aria-label={t('settings.title')}
           >
             <Settings className="w-4 h-4 group-hover:rotate-90 transition-transform duration-500" />
           </button>
         </div>
-      </div>
+      </header>
       <SettingsDialog
         open={settingsOpen}
         onOpenChange={(open) => {
@@ -991,37 +998,40 @@ function HomePage() {
         />
       </div>
 
-      {/* ═══ Hero section: title + input (centered, wider) ═══ */}
+      {/* ═══ Hero section ═══ */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={cn('relative z-20 w-full max-w-[800px] flex flex-col items-center mt-[10vh]')}
+        className="masar-hero relative z-20 w-full max-w-[800px] flex flex-col items-center"
       >
-        {/* ── Logo ── */}
-        <motion.img
-          src="/logo-masar.svg"
-          alt="MASAR"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            delay: 0.1,
-            type: 'spring',
-            stiffness: 200,
-            damping: 20,
-          }}
-          className="h-12 md:h-16 mb-2 -ml-2 md:-ml-3"
-        />
+        {/* Route SVG */}
+        <svg className="masar-route-svg" viewBox="0 0 920 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="routeGrad" x1="0" y1="0" x2="920" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#8F87F1" />
+              <stop offset="0.5" stopColor="#C68EFD" />
+              <stop offset="1" stopColor="#E9A5F1" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M20,110 C 160,10 260,10 340,70 C 420,130 520,130 600,60 C 670,0 780,0 900,55"
+            stroke="url(#routeGrad)"
+            strokeWidth="2.5"
+            strokeDasharray="1 10"
+            strokeLinecap="round"
+          />
+          <circle cx="20" cy="110" r="5" fill="#8F87F1" />
+          <circle cx="340" cy="70" r="4" fill="#C68EFD" />
+          <circle cx="600" cy="60" r="4" fill="#C68EFD" />
+          <circle cx="900" cy="55" r="5" fill="#E9A5F1" />
+        </svg>
 
-        {/* ── Slogan ── */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.25 }}
-          className="text-sm text-muted-foreground/60 mb-8"
-        >
-          {t('home.slogan')}
-        </motion.p>
+        <h1 className="masar-hero-title">
+          {t('home.heroTitlePrefix')}
+          <span className="grad">{t('home.heroTitleHighlight')}</span>
+          {t('home.heroTitleSuffix')}
+        </h1>
 
         {/* ── Unified input area ── */}
         <motion.div
@@ -1030,11 +1040,11 @@ function HomePage() {
           transition={{ delay: 0.35 }}
           className="w-full"
         >
-          <div className="w-full rounded-2xl border border-border/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-xl shadow-black/[0.03] dark:shadow-black/20 transition-shadow focus-within:shadow-2xl focus-within:shadow-violet-500/[0.06]">
+          <div className="masar-prompt-card">
             {/* ── Greeting + Profile + Agents ── */}
-            <div className="relative z-20 flex items-start justify-between">
+            <div className="masar-prompt-top">
               <GreetingBar />
-              <div className="pr-3 pt-3.5 shrink-0">
+              <div className="shrink-0">
                 <AgentBar
                   onOpenSettings={() => {
                     setSettingsSection('tts');
@@ -1048,7 +1058,7 @@ function HomePage() {
             <textarea
               ref={textareaRef}
               placeholder={t('upload.requirementPlaceholder')}
-              className="w-full resize-none border-0 bg-transparent px-4 pt-1 pb-2 text-[13px] leading-relaxed placeholder:text-muted-foreground/40 focus:outline-none min-h-[140px] max-h-[300px]"
+              className="w-full resize-none border-0 bg-transparent px-2 pt-2 pb-3 text-[15.5px] leading-[1.75] placeholder:text-[#B9B1CE] focus:outline-none min-h-[120px] max-h-[260px] text-[#231A38] dark:text-[#F4F1FC]"
               value={form.requirement}
               onChange={(e) => updateForm('requirement', e.target.value)}
               onKeyDown={handleKeyDown}
@@ -1056,7 +1066,7 @@ function HomePage() {
             />
 
             {/* Toolbar row */}
-            <div className="px-3 pb-3 flex items-end gap-2">
+            <div className="masar-prompt-footer">
               <div className="flex-1 min-w-0">
                 <GenerationToolbar
                   webSearch={form.webSearch}
@@ -1101,43 +1111,24 @@ function HomePage() {
 
               {/* Send button */}
               <button
+                type="button"
                 onClick={handleGenerate}
                 disabled={!canGenerate || preparingGenerate}
                 className={cn(
-                  'shrink-0 h-8 rounded-lg flex items-center justify-center gap-1.5 transition-all px-3',
-                  canGenerate && !preparingGenerate
-                    ? 'bg-primary text-primary-foreground hover:opacity-90 shadow-sm cursor-pointer'
-                    : 'bg-muted text-muted-foreground/40 cursor-not-allowed',
+                  'masar-cta-btn shrink-0',
+                  (!canGenerate || preparingGenerate) && 'opacity-60 cursor-not-allowed',
                 )}
               >
-                <span className="text-xs font-medium">
-                  {preparingGenerate ? t('stage.generating') : t('toolbar.enterClassroom')}
-                </span>
+                <span>{preparingGenerate ? t('stage.generating') : t('toolbar.enterClassroom')}</span>
                 {preparingGenerate ? (
-                  <Loader2 className="size-3.5 animate-spin" />
+                  <Loader2 className="size-4 animate-spin" />
                 ) : (
-                  <ArrowUp className="size-3.5" />
+                  <ArrowUp className="size-4" />
                 )}
               </button>
             </div>
           </div>
 
-          {/* Saved courses shortcut — visible even when the library section is below the fold or collapsed. */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45 }}
-            className="mt-4 flex justify-center"
-          >
-            <button
-              type="button"
-              onClick={() => setPrebuiltOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full bg-violet-50 px-4 py-2 text-[13px] font-medium text-violet-700 ring-1 ring-violet-200 hover:bg-violet-100 hover:text-violet-800 dark:bg-violet-950/40 dark:text-violet-300 dark:ring-violet-800 dark:hover:bg-violet-900/60 transition-colors cursor-pointer"
-            >
-              <BookOpen className="size-4" />
-              View saved courses
-            </button>
-          </motion.div>
         </motion.div>
 
         {showVocationalTestUi && (
@@ -1213,43 +1204,34 @@ function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="relative z-10 mt-10 w-full max-w-6xl flex flex-col items-center"
+          className="masar-catalog relative z-10 w-full"
         >
-          {/* Trigger — divider-line with centered text. Fixed height keeps the
-              bar geometrically stable when the New-folder action or the folder
-              path appears/disappears (entering vs leaving a folder). */}
-          <div className="group w-full flex items-center gap-4 h-9">
-            <div className="flex-1 h-px bg-border/40 group-hover:bg-border/70 transition-colors" />
-            <div className="shrink-0 flex items-center gap-3 text-[13px] text-muted-foreground/60 select-none">
-              <button
-                onClick={() => {
-                  if (currentFolderId) setCurrentFolderId(undefined);
-                  else persistRecentOpen(!recentOpen);
-                }}
-                className="flex items-center gap-2 hover:text-foreground/70 transition-colors cursor-pointer"
+          {/* Trigger — MASAR catalog header with collapse, search + actions. */}
+          <div className="masar-catalog-trigger">
+            <button
+              type="button"
+              onClick={() => {
+                if (currentFolderId) setCurrentFolderId(undefined);
+                else persistRecentOpen(!recentOpen);
+              }}
+              className="masar-catalog-title"
+            >
+              <span>
+                {currentFolder ? currentFolder.name : t('classroom.recentClassrooms')}
+              </span>
+              <span className="tabular-nums">
+                {currentFolder ? currentFolderClassrooms.length : classrooms.length}
+              </span>
+              <motion.div
+                animate={{ rotate: recentOpen ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
               >
-                <Clock className="size-3.5" />
-                {t('classroom.recentClassrooms')}
-                {currentFolder && (
-                  <>
-                    <ChevronRight className="size-3 opacity-40" />
-                    <span className="text-foreground/80 truncate max-w-[160px]">
-                      {currentFolder.name}
-                    </span>
-                  </>
-                )}
-                <span className="text-[11px] tabular-nums opacity-60">
-                  {currentFolder ? currentFolderClassrooms.length : classrooms.length}
-                </span>
-                <motion.div
-                  animate={{ rotate: recentOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                >
-                  <ChevronDown className="size-3.5" />
-                </motion.div>
-              </button>
+                <ChevronDown className="size-4" />
+              </motion.div>
+            </button>
 
-              {/* Search toggle — icon that expands into an input in place */}
+            <div className="masar-catalog-actions">
+              {/* Search toggle */}
               <AnimatePresence initial={false}>
                 {!searchOpen ? (
                   <motion.button
@@ -1266,7 +1248,7 @@ function HomePage() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.12, ease: 'easeOut' }}
-                    className="flex items-center justify-center size-6 rounded-full text-muted-foreground/50 hover:text-foreground/70 hover:bg-muted/50 transition-colors cursor-pointer"
+                    className="masar-catalog-action"
                   >
                     <Search className="size-3.5" />
                   </motion.button>
@@ -1281,12 +1263,11 @@ function HomePage() {
                   >
                     <InputGroup
                       className={cn(
-                        'h-7 text-[12px] rounded-full bg-muted/40 border-transparent shadow-none',
-                        'transition-colors',
-                        'hover:bg-muted/60',
-                        'has-[[data-slot=input-group-control]:focus-visible]:bg-muted/60',
-                        'has-[[data-slot=input-group-control]:focus-visible]:border-transparent',
-                        'has-[[data-slot=input-group-control]:focus-visible]:ring-0',
+                        'h-8 text-[12px] rounded-full bg-white dark:bg-[#231A38] border-[#EDE8F9] dark:border-white/10 shadow-none',
+                        'hover:border-[#C68EFD]',
+                        'has-[[data-slot=input-group-control]:focus-visible]:border-[#8F87F1]',
+                        'has-[[data-slot=input-group-control]:focus-visible]:ring-1',
+                        'has-[[data-slot=input-group-control]:focus-visible]:ring-[#8F87F1]/25',
                       )}
                     >
                       <InputGroupInput
@@ -1311,7 +1292,7 @@ function HomePage() {
                         }}
                         placeholder={t('classroom.searchPlaceholder')}
                         aria-label={t('classroom.searchAriaLabel')}
-                        className="h-7 pl-3 placeholder:text-muted-foreground/50"
+                        className="h-8 pl-3 placeholder:text-[#9A93AC]"
                       />
                       {searchQuery && (
                         <InputGroupButton
@@ -1332,14 +1313,13 @@ function HomePage() {
               </AnimatePresence>
 
               <button
+                type="button"
                 onClick={triggerImport}
                 disabled={importing}
-                className="group/import grid grid-cols-[auto_0fr] hover:grid-cols-[auto_1fr] items-center gap-1 rounded-full px-1.5 py-0.5 text-[12px] text-muted-foreground/35 hover:text-muted-foreground/70 hover:bg-muted/50 transition-all duration-200 cursor-pointer"
+                className="masar-catalog-action"
+                aria-label={t('import.classroom')}
               >
-                <Upload className="size-3" />
-                <span className="overflow-hidden opacity-0 group-hover/import:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                  {t('import.classroom')}
-                </span>
+                <Upload className="size-3.5" />
               </button>
               <button
                 type="button"
@@ -1347,40 +1327,25 @@ function HomePage() {
                   if (!recentOpen) persistRecentOpen(true);
                   setPrebuiltOpen(true);
                 }}
-                className="inline-flex items-center gap-1.5 rounded-full bg-violet-50 px-2.5 py-1 text-[12px] font-medium text-violet-700 ring-1 ring-violet-200 hover:bg-violet-100 hover:text-violet-800 dark:bg-violet-950/40 dark:text-violet-300 dark:ring-violet-800 dark:hover:bg-violet-900/60 transition-colors cursor-pointer"
+                className="masar-catalog-action"
+                aria-label="Saved courses"
               >
                 <BookOpen className="size-3.5" />
-                Saved courses
               </button>
-              {PPTX_IMPORT_ENABLED && (
-                <button
-                  onClick={triggerPptxFileSelect}
-                  disabled={pptxImporting}
-                  className="group/import-pptx grid grid-cols-[auto_0fr] hover:grid-cols-[auto_1fr] items-center gap-1 rounded-full px-1.5 py-0.5 text-[12px] text-muted-foreground/35 hover:text-muted-foreground/70 hover:bg-muted/50 transition-all duration-200 cursor-pointer"
-                >
-                  <Presentation className="size-3" />
-                  <span className="overflow-hidden opacity-0 group-hover/import-pptx:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                    {t('import.pptx')}
-                  </span>
-                </button>
-              )}
-              {/* New folder — round icon button, matches the import/upload affordances. */}
-              {!currentFolderId && !isSearching && (
+              {!currentFolderId && (
                 <button
                   type="button"
                   onClick={() => {
                     if (!recentOpen) persistRecentOpen(true);
                     setNewFolderOpen(true);
                   }}
+                  className="masar-catalog-action"
                   aria-label={t('classroom.newFolderTitle')}
-                  title={t('classroom.newFolderTitle')}
-                  className="inline-flex items-center justify-center size-7 rounded-full bg-muted/40 text-muted-foreground ring-1 ring-border/50 hover:bg-muted hover:text-foreground hover:ring-border transition-[background-color,color,box-shadow] cursor-pointer"
                 >
                   <FolderPlus className="size-3.5" />
                 </button>
               )}
             </div>
-            <div className="flex-1 h-px bg-border/40 group-hover:bg-border/70 transition-colors" />
           </div>
 
           {/* Expandable content */}
@@ -1393,57 +1358,95 @@ function HomePage() {
                 transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                 className="w-full overflow-hidden"
               >
-                {folders.length === 0 && classrooms.length === 0 ? (
-                  <div className="pt-8 pb-2 flex flex-col items-center gap-4">
-                    <p className="text-center text-[13px] text-muted-foreground/60">
-                      {t('classroom.emptyLibraryHint')}
-                    </p>
-                    <button
-                      onClick={() => setPrebuiltOpen(true)}
-                      className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-[13px] font-medium text-white shadow-sm hover:bg-violet-700 transition-colors cursor-pointer"
-                    >
-                      <BookOpen className="size-4" />
-                      Import saved courses
-                    </button>
-                  </div>
-                ) : !isSearching && currentFolderId && currentFolderClassrooms.length === 0 ? (
-                  // Empty folder: hint directly below the centered path bar.
-                  <div className="pt-8 text-center">
-                    <p className="text-[14px] text-muted-foreground">
-                      {t('classroom.emptyFolderHint')}
-                    </p>
-                  </div>
-                ) : isSearching && filteredClassrooms.length === 0 ? (
-                  <div className="pt-8 pb-2 text-center text-[13px] text-muted-foreground/60">
-                    {t('classroom.searchEmpty')}
-                  </div>
-                ) : (
-                  <div className="pt-8">
-                    {/* Breadcrumb — shown only while searching (the folder path
-                        already lives in the centered header above). */}
-                    {isSearching && (
-                      <div className="mb-4 flex items-center gap-1.5 text-[13px] text-muted-foreground">
+                <div className="pt-8">
+                  {/* Breadcrumb — shown only while searching (the folder path
+                      already lives in the centered header above). */}
+                  {isSearching && (
+                    <div className="mb-4 flex items-center gap-1.5 text-[13px] text-muted-foreground">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCurrentFolderId(undefined);
+                          setSearchQuery('');
+                          setSearchOpen(false);
+                        }}
+                        className="hover:text-foreground transition-colors"
+                      >
+                        {t('classroom.recentClassrooms')}
+                      </button>
+                      <ChevronRight className="size-3.5" />
+                      <span className="text-foreground font-medium">
+                        {t('classroom.searchResults')}
+                      </span>
+                      <span className="ml-1.5 text-[12px] text-muted-foreground tabular-nums">
+                        ({filteredClassrooms.length})
+                      </span>
+                    </div>
+                  )}
+
+                  {/* MASAR catalog tabs + filters */}
+                  {!isSearching && (
+                    <div className="masar-catalog-top">
+                      <div className="masar-tabs">
                         <button
                           type="button"
-                          onClick={() => {
-                            setCurrentFolderId(undefined);
-                            setSearchQuery('');
-                            setSearchOpen(false);
-                          }}
-                          className="hover:text-foreground transition-colors"
+                          className={cn('masar-tab', catalogTab === 'discover' && 'active')}
+                          onClick={() => setCatalogTab('discover')}
                         >
-                          {t('classroom.recentClassrooms')}
+                          {t('discover.tabDiscover')}
                         </button>
-                        <ChevronRight className="size-3.5" />
-                        <span className="text-foreground font-medium">
-                          {t('classroom.searchResults')}
-                        </span>
-                        <span className="ml-1.5 text-[12px] text-muted-foreground tabular-nums">
-                          ({filteredClassrooms.length})
-                        </span>
+                        <button
+                          type="button"
+                          className={cn('masar-tab', catalogTab === 'mycourses' && 'active')}
+                          onClick={() => setCatalogTab('mycourses')}
+                        >
+                          {t('discover.tabMyCourses')}
+                        </button>
                       </div>
-                    )}
+                      {catalogTab === 'discover' && (
+                        <div className="masar-filters">
+                          {[
+                            { key: 'all', label: 'discover.filterAll' },
+                            { key: 'math', label: 'discover.filterMath' },
+                            { key: 'cs', label: 'discover.filterCS' },
+                            { key: 'science', label: 'discover.filterScience' },
+                            { key: 'arabic', label: 'discover.filterArabic' },
+                            { key: 'business', label: 'discover.filterBusiness' },
+                          ].map(({ key, label }) => (
+                            <button
+                              key={key}
+                              type="button"
+                              className={cn('masar-filter', discoverFilter === key && 'active')}
+                              onClick={() => setDiscoverFilter(key as DiscoverFilter)}
+                            >
+                              {t(label)}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
 
+                  {catalogTab === 'discover' && !isSearching ? (
+                    <DiscoverCatalog activeFilter={discoverFilter} />
+                  ) : folders.length === 0 && classrooms.length === 0 && !isSearching ? (
+                    <div className="pb-2 flex flex-col items-center gap-4">
+                      <p className="text-center text-[13px] text-muted-foreground/60">
+                        {t('classroom.emptyLibraryHint')}
+                      </p>
+                    </div>
+                  ) : !isSearching && currentFolderId && currentFolderClassrooms.length === 0 ? (
+                    // Empty folder: hint directly below the centered path bar.
+                    <div className="text-center">
+                      <p className="text-[14px] text-muted-foreground">
+                        {t('classroom.emptyFolderHint')}
+                      </p>
+                    </div>
+                  ) : isSearching && filteredClassrooms.length === 0 ? (
+                    <div className="pb-2 text-center text-[13px] text-muted-foreground/60">
+                      {t('classroom.searchEmpty')}
+                    </div>
+                  ) : (
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={
@@ -1457,72 +1460,73 @@ function HomePage() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.2 }}
-                        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8"
+                        className="masar-card-grid"
                       >
-                        {/* Root + non-search: render folder tiles first. */}
-                        {!isSearching &&
-                          currentFolderId === undefined &&
-                          folders.map((folder, i) => (
-                            <motion.div
-                              key={folder.id}
-                              initial={{ opacity: 0, y: 16 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: i * 0.04, duration: 0.35, ease: 'easeOut' }}
-                            >
-                              <FolderCard
-                                folder={folder}
-                                courseCount={courseCountByFolder.get(folder.id) ?? 0}
-                                coverSlides={coverSlidesByFolder.get(folder.id) ?? []}
-                                onOpen={() => setCurrentFolderId(folder.id)}
-                                onRename={handleRenameFolder(folder)}
-                                onDelete={(mode) => confirmDeleteFolder(folder, mode)}
-                                onDropCourse={(stageId) => handleMoveCourse(stageId, folder.id)}
-                              />
-                            </motion.div>
-                          ))}
-
-                        {/* Course tiles for the active view. */}
-                        {visibleClassrooms.map((classroom, i) => (
+                      {/* Root + non-search: render folder tiles first. */}
+                      {!isSearching &&
+                        currentFolderId === undefined &&
+                        folders.map((folder, i) => (
                           <motion.div
-                            key={classroom.id}
+                            key={folder.id}
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.04, duration: 0.35, ease: 'easeOut' }}
+                            className="masar-folder-card"
                           >
-                            <ClassroomCard
-                              classroom={classroom}
-                              slide={thumbnails[classroom.id]}
-                              formatDate={formatDate}
-                              onDelete={handleDelete}
-                              onRename={handleRename}
-                              confirmingDelete={pendingDeleteId === classroom.id}
-                              onConfirmDelete={() => confirmDelete(classroom.id)}
-                              onCancelDelete={() => setPendingDeleteId(null)}
-                              onClick={() => router.push(`/classroom/${classroom.id}`)}
-                              overlay={
-                                <>
-                                  <MoveToFolderMenu
-                                    folders={folders}
-                                    currentFolderId={classroom.folderId}
-                                    onMove={(folderId) => handleMoveCourse(classroom.id, folderId)}
-                                    onCreateAndMove={handleCreateAndMove(classroom.id)}
-                                  />
-                                  {/* Search view: show the owning folder as a badge. */}
-                                  {isSearching && classroom.folderId && (
-                                    <span className="absolute bottom-2 left-2 z-10 inline-flex items-center gap-1 rounded-md bg-violet-500/80 px-1.5 py-0.5 text-[10px] font-medium text-white backdrop-blur-sm pointer-events-none">
-                                      <Folder className="size-2.5" />
-                                      {folderNameById.get(classroom.folderId) ?? ''}
-                                    </span>
-                                  )}
-                                </>
-                              }
+                            <FolderCard
+                              folder={folder}
+                              courseCount={courseCountByFolder.get(folder.id) ?? 0}
+                              coverSlides={coverSlidesByFolder.get(folder.id) ?? []}
+                              onOpen={() => setCurrentFolderId(folder.id)}
+                              onRename={handleRenameFolder(folder)}
+                              onDelete={(mode) => confirmDeleteFolder(folder, mode)}
+                              onDropCourse={(stageId) => handleMoveCourse(stageId, folder.id)}
                             />
                           </motion.div>
                         ))}
+
+                      {/* Course tiles for the active view. */}
+                      {visibleClassrooms.map((classroom, i) => (
+                        <motion.div
+                          key={classroom.id}
+                          initial={{ opacity: 0, y: 16 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.04, duration: 0.35, ease: 'easeOut' }}
+                        >
+                          <ClassroomCard
+                            classroom={classroom}
+                            slide={thumbnails[classroom.id]}
+                            formatDate={formatDate}
+                            onDelete={handleDelete}
+                            onRename={handleRename}
+                            confirmingDelete={pendingDeleteId === classroom.id}
+                            onConfirmDelete={() => confirmDelete(classroom.id)}
+                            onCancelDelete={() => setPendingDeleteId(null)}
+                            onClick={() => router.push(`/classroom/${classroom.id}`)}
+                            overlay={
+                              <>
+                                <MoveToFolderMenu
+                                  folders={folders}
+                                  currentFolderId={classroom.folderId}
+                                  onMove={(folderId) => handleMoveCourse(classroom.id, folderId)}
+                                  onCreateAndMove={handleCreateAndMove(classroom.id)}
+                                />
+                                {/* Search view: show the owning folder as a badge. */}
+                                {isSearching && classroom.folderId && (
+                                  <span className="absolute bottom-2 left-2 z-10 inline-flex items-center gap-1 rounded-md bg-violet-500/80 px-1.5 py-0.5 text-[10px] font-medium text-white backdrop-blur-sm pointer-events-none">
+                                    <Folder className="size-2.5" />
+                                    {folderNameById.get(classroom.folderId) ?? ''}
+                                  </span>
+                                )}
+                              </>
+                            }
+                          />
+                        </motion.div>
+                      ))}
                       </motion.div>
                     </AnimatePresence>
-                  </div>
-                )}
+                  )}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -1549,10 +1553,19 @@ function HomePage() {
         }}
       />
 
-      {/* Footer — flows with content, at the very end */}
-      <div className="mt-auto pt-12 pb-4 text-center text-xs text-muted-foreground/40">
-        MASAR — Adaptive Learning Platform
-      </div>
+      {/* Footer — MASAR mark + copyright */}
+      <footer className="masar-footer">
+        <div className="masar-footer-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="12" fill="#53358F" />
+            <path
+              d="M11 29V11h4.5l6.5 10.5L28.5 11H33v18h-4.5V18L22.5 28h-5L15.5 18v11H11z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <p className="masar-footer-copy">© 2026 Masar — your path through university</p>
+      </footer>
     </div>
   );
 }
@@ -1910,7 +1923,7 @@ function ClassroomCard({
 
   return (
     <div
-      className="group cursor-pointer"
+      className="masar-course-card group cursor-pointer"
       onClick={confirmingDelete ? undefined : onClick}
       draggable={!confirmingDelete && !editing}
       onDragStart={(e) => {
@@ -1923,10 +1936,10 @@ function ClassroomCard({
         window.dispatchEvent(new CustomEvent('course-drag-end'));
       }}
     >
-      {/* Thumbnail — large radius, no border, subtle bg */}
+      {/* Thumbnail — MASAR card visual */}
       <div
         ref={thumbRef}
-        className="relative w-full aspect-[16/9] rounded-2xl bg-slate-100 dark:bg-slate-800/80 overflow-hidden transition-transform duration-200 group-hover:scale-[1.02]"
+        className="masar-card-visual relative w-full aspect-[16/9]"
       >
         {slide && thumbWidth > 0 ? (
           <SlideThumbnail
@@ -2039,11 +2052,8 @@ function ClassroomCard({
         </AnimatePresence>
       </div>
 
-      {/* Info — outside the thumbnail */}
-      <div className="mt-2.5 px-1 flex items-center gap-2">
-        <span className="shrink-0 inline-flex items-center rounded-full bg-violet-100 dark:bg-violet-900/30 px-2 py-0.5 text-[11px] font-medium text-violet-600 dark:text-violet-400">
-          {classroom.sceneCount} {t('classroom.slides')} · {formatDate(classroom.updatedAt)}
-        </span>
+      {/* Info — MASAR card body */}
+      <div className="masar-card-body">
         {editing ? (
           <div className="flex-1 min-w-0" onClick={(e) => e.stopPropagation()}>
             <input
@@ -2063,12 +2073,12 @@ function ClassroomCard({
         ) : (
           <Tooltip>
             <TooltipTrigger asChild>
-              <p
-                className="font-medium text-[15px] truncate text-foreground/90 min-w-0 cursor-text"
+              <h3
+                className="truncate cursor-text"
                 onDoubleClick={startRename}
               >
                 {classroom.name}
-              </p>
+              </h3>
             </TooltipTrigger>
             <TooltipContent
               side="bottom"
@@ -2091,6 +2101,9 @@ function ClassroomCard({
             </TooltipContent>
           </Tooltip>
         )}
+        <p className="masar-card-meta">
+          {classroom.sceneCount} {t('classroom.slides')} · {formatDate(classroom.updatedAt)}
+        </p>
       </div>
     </div>
   );

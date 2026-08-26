@@ -1,0 +1,878 @@
+/* MASAR homepage visual layer
+   Scoped under .masar-home so it only affects app/page.tsx and does not
+   leak into classroom, editor, or other routes. */
+
+.masar-home {
+  --m-purple-deep: #53358F;
+  --m-purple-deep-2: #3E2870;
+  --m-purple: #8F87F1;
+  --m-lavender: #C68EFD;
+  --m-pink: #E9A5F1;
+  --m-blush: #FED2E2;
+  --m-ink: #231A38;
+  --m-grey: #6E6580;
+  --m-grey-soft: #9A93AC;
+  --m-line: #EDE8F9;
+  --m-white: #FFFFFF;
+  --m-card-shadow: 0 1px 2px rgba(35, 26, 56, 0.04), 0 12px 32px -12px rgba(83, 53, 143, 0.18);
+  --m-card-shadow-hover: 0 1px 2px rgba(35, 26, 56, 0.05), 0 22px 44px -14px rgba(83, 53, 143, 0.28);
+
+  min-height: 100vh;
+  color: var(--m-ink);
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(143, 135, 241, 0.16), transparent 60%),
+    radial-gradient(900px 500px at 92% 8%, rgba(233, 165, 241, 0.14), transparent 55%),
+    linear-gradient(180deg, #FCFBFF 0%, #FBF8FF 45%, #FDF3F8 100%);
+}
+
+.dark .masar-home {
+  --m-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 12px 32px -12px rgba(0, 0, 0, 0.5);
+  --m-card-shadow-hover: 0 1px 2px rgba(0, 0, 0, 0.25), 0 22px 44px -14px rgba(0, 0, 0, 0.6);
+  color: #F4F1FC;
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(143, 135, 241, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 92% 8%, rgba(233, 165, 241, 0.08), transparent 55%),
+    linear-gradient(180deg, #1A1425 0%, #1F1830 45%, #231A38 100%);
+}
+
+/* ---------------- Header ---------------- */
+.masar-home .masar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 32px 8px;
+}
+
+.masar-home .masar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.masar-home .masar-brand img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.masar-home .masar-brand-text {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 23px;
+  letter-spacing: 0.01em;
+  color: var(--m-purple-deep-2);
+}
+
+.dark .masar-home .masar-brand-text {
+  color: #F4F1FC;
+}
+
+.masar-home .masar-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.masar-home .masar-lang-pill {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--m-white);
+  border: 1px solid var(--m-line);
+  border-radius: 999px;
+  padding: 4px;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(35, 26, 56, 0.03);
+}
+
+.dark .masar-home .masar-lang-pill {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+}
+
+.masar-home .masar-lang-pill > button,
+.masar-home .masar-lang-pill > [data-state='closed'] > button,
+.masar-home .masar-lang-pill > span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--m-grey-soft);
+  transition: all 0.15s ease;
+}
+
+.masar-home .masar-lang-pill > button:hover,
+.masar-home .masar-lang-pill > [data-state='closed'] > button:hover {
+  color: var(--m-purple-deep);
+}
+
+.dark .masar-home .masar-lang-pill > button:hover,
+.dark .masar-home .masar-lang-pill > [data-state='closed'] > button:hover {
+  color: #F4F1FC;
+}
+
+.masar-home .masar-lang-pill .active {
+  background: var(--m-purple-deep);
+  color: #fff !important;
+}
+
+.masar-home .masar-lang-pill .ar {
+  font-family: var(--font-arabic), 'Tajawal', sans-serif;
+  font-weight: 700;
+}
+
+.masar-home .masar-icon-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--m-grey-soft);
+  background: var(--m-white);
+  border: 1px solid var(--m-line);
+  transition: all 0.15s ease;
+}
+
+.dark .masar-home .masar-icon-btn {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+  color: #9A93AC;
+}
+
+.masar-home .masar-icon-btn:hover {
+  background: var(--m-purple-deep);
+  color: #fff;
+  border-color: var(--m-purple-deep);
+}
+
+/* ---------------- Hero ---------------- */
+.masar-home .masar-hero {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 32px 44px;
+  text-align: center;
+}
+
+.masar-home .masar-route-svg {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(920px, 92%);
+  height: auto;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.masar-home .masar-hero-title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--m-ink);
+  max-width: 640px;
+  margin: 0 auto 30px;
+}
+
+.dark .masar-home .masar-hero-title {
+  color: #F4F1FC;
+}
+
+.masar-home .masar-hero-title .grad {
+  background: linear-gradient(100deg, var(--m-purple-deep) 0%, var(--m-purple) 45%, var(--m-pink) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------------- Prompt card ---------------- */
+.masar-home .masar-prompt-card {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--m-white);
+  border-radius: 26px;
+  padding: 22px 24px 18px;
+  box-shadow: var(--m-card-shadow);
+  border: 1px solid #F2ECFE;
+  text-align: left;
+}
+
+.dark .masar-home .masar-prompt-card {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+}
+
+.masar-home .masar-prompt-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.masar-home .masar-greet-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--m-grey);
+  background: #F8F6FE;
+  border-radius: 999px;
+  padding: 5px 12px 5px 5px;
+}
+
+.dark .masar-home .masar-greet-chip {
+  background: #2E2442;
+}
+
+.masar-home .masar-greet-chip .avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--m-purple), var(--m-pink));
+}
+
+.masar-home .masar-agents-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--m-grey);
+  background: #F8F6FE;
+  border-radius: 999px;
+  padding: 6px 12px 6px 14px;
+}
+
+.dark .masar-home .masar-agents-chip {
+  background: #2E2442;
+}
+
+.masar-home .masar-prompt-text {
+  font-size: 15.5px;
+  color: var(--m-ink);
+  line-height: 1.75;
+}
+
+.dark .masar-home .masar-prompt-text {
+  color: #F4F1FC;
+}
+
+.masar-home .masar-prompt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--m-line);
+}
+
+.dark .masar-home .masar-prompt-footer {
+  border-color: rgba(237, 232, 249, 0.12);
+}
+
+.masar-home .masar-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(100deg, var(--m-purple-deep) 0%, var(--m-purple) 100%);
+  padding: 11px 22px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px -10px rgba(83, 53, 143, 0.55);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.masar-home .masar-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px -10px rgba(83, 53, 143, 0.6);
+}
+
+.masar-home .masar-cta-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------------- Catalog ---------------- */
+.masar-home .masar-catalog {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px 32px 90px;
+}
+
+.masar-home .masar-catalog-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.masar-home .masar-catalog-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--m-purple-deep-2);
+  background: var(--m-white);
+  border: 1px solid var(--m-line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  box-shadow: 0 1px 2px rgba(35, 26, 56, 0.03);
+  transition: all 0.15s ease;
+}
+
+.dark .masar-home .masar-catalog-title {
+  color: #F4F1FC;
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+}
+
+.masar-home .masar-catalog-title:hover {
+  border-color: var(--m-lavender);
+}
+
+.masar-home .masar-catalog-title span:nth-child(2) {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.masar-home .masar-catalog-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.masar-home .masar-catalog-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--m-grey);
+  background: var(--m-white);
+  border: 1px solid var(--m-line);
+  transition: all 0.15s ease;
+}
+
+.dark .masar-home .masar-catalog-action {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+  color: #9A93AC;
+}
+
+.masar-home .masar-catalog-action:hover {
+  background: var(--m-purple-deep);
+  border-color: var(--m-purple-deep);
+  color: #fff;
+}
+
+.masar-home .masar-catalog-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.masar-home .masar-catalog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.masar-home .masar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #F4F1FC;
+  padding: 4px;
+  border-radius: 999px;
+}
+
+.dark .masar-home .masar-tabs {
+  background: #2E2442;
+}
+
+.masar-home .masar-tabs button {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 999px;
+  color: var(--m-grey);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.15s ease;
+}
+
+.masar-home .masar-tabs button.active {
+  background: var(--m-white);
+  color: var(--m-purple-deep-2);
+  box-shadow: 0 4px 12px -4px rgba(83, 53, 143, 0.25);
+}
+
+.dark .masar-home .masar-tabs button.active {
+  background: #231A38;
+  color: #F4F1FC;
+}
+
+.masar-home .masar-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.masar-home .masar-filters button,
+.masar-home .masar-filters span {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 999px;
+  color: var(--m-grey);
+  background: var(--m-white);
+  border: 1px solid var(--m-line);
+  transition: all 0.15s ease;
+}
+
+.dark .masar-home .masar-filters button,
+.dark .masar-home .masar-filters span {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+  color: #9A93AC;
+}
+
+.masar-home .masar-filters button.active,
+.masar-home .masar-filters button:hover {
+  background: var(--m-purple-deep);
+  border-color: var(--m-purple-deep);
+  color: #fff;
+}
+
+.masar-home .masar-filter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--m-grey);
+  background: var(--m-white);
+  border: 1px solid var(--m-line);
+  transition: all 0.15s ease;
+}
+
+.dark .masar-home .masar-filter-icon {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+  color: #9A93AC;
+}
+
+.masar-home .masar-filter-icon:hover {
+  background: var(--m-purple-deep);
+  border-color: var(--m-purple-deep);
+  color: #fff;
+}
+
+.masar-home .masar-filter-icon:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------------- Course / folder cards ---------------- */
+.masar-home .masar-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 1024px) {
+  .masar-home .masar-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 880px) {
+  .masar-home .masar-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .masar-home .masar-hero-title {
+    font-size: 32px;
+  }
+  .masar-home .masar-header,
+  .masar-home .masar-hero,
+  .masar-home .masar-catalog {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .masar-home .masar-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .masar-home .masar-catalog-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.masar-home .masar-course-card {
+  background: var(--m-white);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--m-card-shadow);
+  border: 1px solid #F2ECFE;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .masar-home .masar-course-card {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+}
+
+.masar-home .masar-course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--m-card-shadow-hover);
+}
+
+.masar-home .masar-card-visual {
+  position: relative;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(155deg, #F5F1FF 0%, #EFE8FE 100%);
+}
+
+.dark .masar-home .masar-card-visual {
+  background: linear-gradient(155deg, #2E2442 0%, #231A38 100%);
+}
+
+.masar-home .masar-card-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(83, 53, 143, 0.04) 100%);
+  pointer-events: none;
+}
+
+.masar-home .masar-card-body {
+  padding: 16px 18px 18px;
+}
+
+.masar-home .masar-card-body h3 {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--m-ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.dark .masar-home .masar-card-body h3 {
+  color: #F4F1FC;
+}
+
+.masar-home .masar-card-body p {
+  font-size: 12.8px;
+  color: var(--m-grey);
+  line-height: 1.55;
+}
+
+.masar-home .masar-card-meta {
+  margin-top: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--m-grey-soft);
+}
+
+.masar-home .masar-folder-card {
+  background: var(--m-white);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--m-card-shadow);
+  border: 1px solid #F2ECFE;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.dark .masar-home .masar-folder-card {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+}
+
+.masar-home .masar-folder-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--m-card-shadow-hover);
+}
+
+/* ---------------- Discover catalog ---------------- */
+.masar-home .masar-discover-catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.masar-home .masar-discover-grid-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.masar-home .masar-discover-grid-bottom {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 1024px) {
+  .masar-home .masar-discover-grid-bottom {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 880px) {
+  .masar-home .masar-discover-grid-top {
+    grid-template-columns: 1fr;
+  }
+  .masar-home .masar-discover-grid-bottom {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .masar-home .masar-discover-grid-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+.masar-home .masar-discover-card {
+  background: var(--m-white);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--m-card-shadow);
+  border: 1px solid #F2ECFE;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .masar-home .masar-discover-card {
+  background: #231A38;
+  border-color: rgba(237, 232, 249, 0.12);
+}
+
+.masar-home .masar-discover-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--m-card-shadow-hover);
+}
+
+.masar-home .masar-discover-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.masar-home .masar-discover-visual-math {
+  background: linear-gradient(155deg, #2B1E4D 0%, #4B2E83 65%, #6A4CB8 100%);
+}
+
+.masar-home .masar-discover-visual-db {
+  background: linear-gradient(155deg, #F5F1FF 0%, #EFE8FE 100%);
+}
+
+.masar-home .masar-discover-visual-bio {
+  background: linear-gradient(155deg, #FFF0F6 0%, #FCE6F3 100%);
+}
+
+.masar-home .masar-discover-visual-phys {
+  background: linear-gradient(155deg, #F1EEFE 0%, #E9E2FC 100%);
+}
+
+.masar-home .masar-discover-visual-arabic {
+  background: linear-gradient(155deg, #FFEAF2 0%, #FFF0F6 100%);
+  flex-direction: column;
+  gap: 6px;
+}
+
+.masar-home .masar-discover-visual-biz {
+  background: linear-gradient(155deg, #F4F1FF 0%, #ECE4FE 100%);
+}
+
+.masar-home .masar-discover-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.masar-home .masar-discover-tag-light {
+  background: #F1EAFE;
+  color: var(--m-purple-deep);
+}
+
+.masar-home .masar-discover-tag-blush {
+  background: #FFE3EC;
+  color: #8A3D75;
+}
+
+.masar-home .masar-discover-tag-glass {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.masar-home .masar-discover-stats {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+}
+
+.masar-home .masar-discover-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(35, 26, 56, 0.55);
+  backdrop-filter: blur(4px);
+  padding: 5px 9px;
+  border-radius: 999px;
+}
+
+.masar-home .masar-discover-body {
+  padding: 18px 20px 20px;
+}
+
+.masar-home .masar-discover-body h3 {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--m-ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.dark .masar-home .masar-discover-body h3 {
+  color: #F4F1FC;
+}
+
+.masar-home .masar-discover-featured .masar-discover-body h3 {
+  font-size: 16.5px;
+}
+
+.masar-home .masar-discover-body p {
+  font-size: 12.8px;
+  color: var(--m-grey);
+  line-height: 1.55;
+}
+
+html[lang='ar'] .masar-home .masar-discover-body h3,
+html[lang='ar'] .masar-home .masar-discover-body p {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ---------------- Footer ---------------- */
+.masar-home .masar-footer {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 32px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.masar-home .masar-footer img {
+  width: 26px;
+  height: auto;
+  border-radius: 8px;
+  opacity: 0.85;
+}
+
+.masar-home .masar-footer-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0.85;
+}
+
+.masar-home .masar-footer-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.masar-home .masar-footer p {
+  font-size: 12px;
+  color: var(--m-grey-soft);
+}
+
+/* ---------------- Arabic language mode ---------------- */
+html[lang='ar'] .masar-home .masar-hero-title,
+html[lang='ar'] .masar-home .masar-card-body h3,
+html[lang='ar'] .masar-home .masar-card-body p,
+html[lang='ar'] .masar-home .masar-footer p,
+html[lang='ar'] .masar-home .masar-greet-chip,
+html[lang='ar'] .masar-home .masar-tabs button,
+html[lang='ar'] .masar-home .masar-filters button {
+  font-family: var(--font-arabic), 'Tajawal', sans-serif;
+}
+
+html[lang='ar'] .masar-home .masar-hero-title,
+html[lang='ar'] .masar-home .masar-card-body h3,
+html[lang='ar'] .masar-home .masar-card-body p,
+html[lang='ar'] .masar-home .masar-footer p {
+  direction: rtl;
+  text-align: right;
+}
+
+html[lang='ar'] .masar-home .masar-hero {
+  text-align: center;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .masar-home * {
+    transition: none !important;
+  }
+}

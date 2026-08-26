@@ -1,0 +1,393 @@
+
+> masar@0.3.2 dev
+> next dev
+
+▲ Next.js 16.1.2 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.66:3000
+- Environments: .env.local
+- Experiments (use with caution):
+  · proxyClientMaxBodySize: "200mb"
+
+✓ Starting...
+✓ Ready in 1000ms
+ GET / 200 in 2.1s (compile: 1542ms, render: 571ms)
+ GET /api/server-providers 200 in 77ms (compile: 68ms, render: 10ms)
+ GET /api/comfyui-workflows 200 in 107ms (compile: 103ms, render: 5ms)
+ GET / 200 in 167ms (compile: 63ms, render: 104ms)
+ GET /api/server-providers 200 in 16ms (compile: 8ms, render: 8ms)
+ GET /api/comfyui-workflows 200 in 21ms (compile: 15ms, render: 6ms)
+ GET / 200 in 479ms (compile: 451ms, render: 28ms)
+✓ Compiled in 2.9s
+✓ Compiled in 498ms
+✓ Compiled in 209ms
+ GET /api/comfyui-workflows 200 in 17ms (compile: 5ms, render: 12ms)
+✓ Compiled in 215ms
+✓ Compiled in 608ms
+ GET / 200 in 1084ms (compile: 242ms, render: 842ms)
+ GET /api/server-providers 200 in 61ms (compile: 44ms, render: 18ms)
+ GET /api/comfyui-workflows 200 in 50ms (compile: 38ms, render: 11ms)
+⚠ Fast Refresh had to perform a full reload when ./lib/i18n/locales/ar-SA.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+✓ Compiled in 203ms
+ GET / 200 in 944ms (compile: 125ms, render: 819ms)
+ GET /api/server-providers 200 in 11ms (compile: 5ms, render: 7ms)
+ GET /api/comfyui-workflows 200 in 11ms (compile: 2ms, render: 8ms)
+✓ Compiled in 158ms
+✓ Compiled in 142ms
+⚠ Fast Refresh had to perform a full reload when ./lib/i18n/locales/zh-CN.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+✓ Compiled in 204ms
+ GET / 200 in 1017ms (compile: 159ms, render: 858ms)
+ GET /api/server-providers 200 in 7ms (compile: 4ms, render: 3ms)
+ GET /api/comfyui-workflows 200 in 9ms (compile: 6ms, render: 2ms)
+ GET / 200 in 164ms (compile: 65ms, render: 99ms)
+ GET /api/server-providers 200 in 17ms (compile: 8ms, render: 9ms)
+ GET /api/comfyui-workflows 200 in 16ms (compile: 12ms, render: 4ms)
+✓ Compiled in 258ms
+⚠ Fast Refresh had to perform a full reload when ./lib/i18n/locales/zh-CN.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+✓ Compiled in 150ms
+ GET / 200 in 1206ms (compile: 180ms, render: 1026ms)
+ GET /api/server-providers 200 in 37ms (compile: 29ms, render: 9ms)
+ GET /api/comfyui-workflows 200 in 6ms (compile: 3ms, render: 3ms)
+✓ Compiled in 280ms
+⚠ Fast Refresh had to perform a full reload when ./lib/i18n/locales/zh-CN.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 1057ms (compile: 182ms, render: 875ms)
+ GET /api/server-providers 200 in 21ms (compile: 12ms, render: 9ms)
+ GET /api/comfyui-workflows 200 in 20ms (compile: 17ms, render: 2ms)
+○ Compiling /generation-preview ...
+ GET /generation-preview 200 in 4.2s (compile: 4.1s, render: 68ms)
+[2026-08-26T19:21:56.576Z] [INFO] [Outlines Stream] Generating outlines: "أريد أن تعطيني درس مختصر في الاحصاء والاحتمالات" [model=deepseek:deepseek-v4-flash]
+ POST /api/generate/scene-outlines-stream 200 in 12.8s (compile: 3.2s, render: 9.6s)
+[2026-08-26T19:22:18.000Z] [INFO] [Scene Content API] Generating content: "مدخل إلى الإحصاء والاحتمالات" (slide) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:22:30.620Z] [INFO] [Scene Content API] Content generated successfully: "مدخل إلى الإحصاء والاحتمالات"
+ POST /api/generate/scene-content 200 in 13.8s (compile: 1180ms, render: 12.7s)
+[2026-08-26T19:22:31.807Z] [INFO] [Scene Actions API] Generating actions: "مدخل إلى الإحصاء والاحتمالات" (slide) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:22:39.660Z] [INFO] [Scene Actions API] Generated 10 actions for: "مدخل إلى الإحصاء والاحتمالات"
+[2026-08-26T19:22:39.665Z] [INFO] [Scene Actions API] Scene assembled successfully: "مدخل إلى الإحصاء والاحتمالات" — 10 actions
+ POST /api/generate/scene-actions 200 in 9.0s (compile: 1091ms, render: 7.9s)
+○ Compiling /classroom/[id] ...
+ GET /classroom/x-Bkv-TZN- 200 in 14.2s (compile: 14.1s, render: 137ms)
+[2026-08-26T19:22:55.451Z] [INFO] [Scene Content API] Generating content: "محاكاة التوزيع الطبيعي" (interactive) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:22:55.479Z] [INFO] [Scene Content API] Generating content: "نظرية الاحتمالات الأساسية" (slide) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:22:55.499Z] [INFO] [Scene Content API] Generating content: "لعبة الاحتمالات: رمية النرد" (interactive) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:22:57.275Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s1_action_zFtAA2XG, textLen=336
+[2026-08-26T19:22:57.291Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s1_action_7wU4NtwJ, textLen=226
+[2026-08-26T19:22:57.299Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s1_action_3LTPOF-9, textLen=241
+ POST /api/generate/tts 200 in 10.2s (compile: 1776ms, render: 8.4s)
+ POST /api/generate/tts 200 in 10.6s (compile: 1767ms, render: 8.9s)
+ POST /api/generate/tts 200 in 11.9s (compile: 1741ms, render: 10.2s)
+[2026-08-26T19:23:07.915Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s1_action_kQfEDr0e, textLen=288
+[2026-08-26T19:23:07.989Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s1_action_gR5SDATi, textLen=243
+[2026-08-26T19:23:11.687Z] [INFO] [Scene Content API] Content generated successfully: "نظرية الاحتمالات الأساسية"
+ POST /api/generate/scene-content 200 in 16.4s (compile: 168ms, render: 16.3s)
+[2026-08-26T19:23:11.997Z] [INFO] [Scene Actions API] Generating actions: "نظرية الاحتمالات الأساسية" (slide) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:23:12.159Z] [INFO] [Scene Content API] Generating content: "التوزيعات الاحتمالية المنفصلة" (slide) [model=deepseek:deepseek-v4-flash]
+ POST /api/generate/tts 200 in 4.9s (compile: 5ms, render: 4.9s)
+ POST /api/generate/tts 200 in 5.6s (compile: 147ms, render: 5.4s)
+○ Compiling /api/session-analyze ...
+[2026-08-26T19:23:25.640Z] [INFO] [Scene Actions API] Generated 14 actions for: "نظرية الاحتمالات الأساسية"
+[2026-08-26T19:23:25.897Z] [INFO] [Scene Actions API] Scene assembled successfully: "نظرية الاحتمالات الأساسية" — 14 actions
+ POST /api/generate/scene-actions 200 in 14.1s (compile: 29ms, render: 14.1s)
+ POST /api/session-analyze 200 in 15.5s (compile: 14.8s, render: 696ms)
+[2026-08-26T19:23:29.574Z] [INFO] [Scene Content API] Content generated successfully: "التوزيعات الاحتمالية المنفصلة"
+ POST /api/generate/scene-content 200 in 17.5s (compile: 22ms, render: 17.5s)
+[2026-08-26T19:23:29.729Z] [INFO] [Scene Actions API] Generating actions: "التوزيعات الاحتمالية المنفصلة" (slide) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:23:29.856Z] [INFO] [Scene Content API] Generating content: "محاكاة التوزيع ذي الحدين" (interactive) [model=deepseek:deepseek-v4-flash]
+ POST /api/session-log 201 in 1984ms (compile: 1386ms, render: 599ms)
+[2026-08-26T19:23:33.426Z] [INFO] [Scene Content API] Content generated successfully: "محاكاة التوزيع الطبيعي"
+ POST /api/generate/scene-content 200 in 38.2s (compile: 74ms, render: 38.1s)
+[2026-08-26T19:23:33.550Z] [INFO] [Scene Actions API] Generating actions: "محاكاة التوزيع الطبيعي" (interactive) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:23:33.601Z] [INFO] [Scene Content API] Generating content: "خريطة الاختبارات الإحصائية" (interactive) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:23:38.400Z] [INFO] [Scene Actions API] Generated 14 actions for: "التوزيعات الاحتمالية المنفصلة"
+[2026-08-26T19:23:38.409Z] [INFO] [Scene Actions API] Scene assembled successfully: "التوزيعات الاحتمالية المنفصلة" — 14 actions
+ POST /api/generate/scene-actions 200 in 8.8s (compile: 26ms, render: 8.7s)
+✓ Finished writing to filesystem cache in 39.2s
+[2026-08-26T19:23:38.772Z] [INFO] [Scene Actions API] Generated 8 actions for: "محاكاة التوزيع الطبيعي"
+[2026-08-26T19:23:38.772Z] [INFO] [Scene Actions API] Scene assembled successfully: "محاكاة التوزيع الطبيعي" — 8 actions
+ POST /api/generate/scene-actions 200 in 5.3s (compile: 28ms, render: 5.2s)
+[2026-08-26T19:23:38.950Z] [INFO] [Scene Content API] Content generated successfully: "لعبة الاحتمالات: رمية النرد"
+ POST /api/generate/scene-content 200 in 43s (compile: 3ms, render: 43s)
+[2026-08-26T19:23:40.409Z] [INFO] [Scene Actions API] Generating actions: "لعبة الاحتمالات: رمية النرد" (interactive) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:23:40.595Z] [INFO] [Scene Content API] Generating content: "ملخص واستنتاجات" (slide) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:23:44.841Z] [INFO] [Scene Actions API] Generated 6 actions for: "لعبة الاحتمالات: رمية النرد"
+[2026-08-26T19:23:44.847Z] [INFO] [Scene Actions API] Scene assembled successfully: "لعبة الاحتمالات: رمية النرد" — 6 actions
+ POST /api/generate/scene-actions 200 in 4.6s (compile: 17ms, render: 4.6s)
+[2026-08-26T19:23:47.919Z] [INFO] [Scene Content API] Content generated successfully: "ملخص واستنتاجات"
+ POST /api/generate/scene-content 200 in 7.4s (compile: 13ms, render: 7.4s)
+[2026-08-26T19:23:48.333Z] [INFO] [Scene Actions API] Generating actions: "ملخص واستنتاجات" (slide) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:23:57.015Z] [INFO] [Scene Actions API] Generated 12 actions for: "ملخص واستنتاجات"
+[2026-08-26T19:23:57.168Z] [INFO] [Scene Actions API] Scene assembled successfully: "ملخص واستنتاجات" — 12 actions
+ POST /api/generate/scene-actions 200 in 9.2s (compile: 92ms, render: 9.1s)
+[2026-08-26T19:24:04.976Z] [INFO] [Scene Content API] Content generated successfully: "خريطة الاختبارات الإحصائية"
+ POST /api/generate/scene-content 200 in 31.6s (compile: 62ms, render: 31.5s)
+[2026-08-26T19:24:06.076Z] [INFO] [Scene Actions API] Generating actions: "خريطة الاختبارات الإحصائية" (interactive) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:24:07.651Z] [INFO] [Scene Content API] Content generated successfully: "محاكاة التوزيع ذي الحدين"
+ POST /api/generate/scene-content 200 in 38.0s (compile: 166ms, render: 37.8s)
+[2026-08-26T19:24:07.813Z] [INFO] [Scene Actions API] Generating actions: "محاكاة التوزيع ذي الحدين" (interactive) [model=deepseek:deepseek-v4-flash]
+[2026-08-26T19:24:12.608Z] [INFO] [Scene Actions API] Generated 8 actions for: "محاكاة التوزيع ذي الحدين"
+[2026-08-26T19:24:13.032Z] [INFO] [Scene Actions API] Scene assembled successfully: "محاكاة التوزيع ذي الحدين" — 8 actions
+ POST /api/generate/scene-actions 200 in 6.1s (compile: 47ms, render: 6.0s)
+○ Compiling /api/chat ...
+[2026-08-26T19:24:14.636Z] [INFO] [Scene Actions API] Generated 9 actions for: "خريطة الاختبارات الإحصائية"
+[2026-08-26T19:24:15.390Z] [INFO] [Scene Actions API] Scene assembled successfully: "خريطة الاختبارات الإحصائية" — 9 actions
+ POST /api/generate/scene-actions 200 in 10.1s (compile: 220ms, render: 9.9s)
+[2026-08-26T19:24:18.925Z] [INFO] [Chat API] Processing request
+[2026-08-26T19:24:18.931Z] [INFO] [Chat API] Agents: default-1, default-3, default-4, default-5, Messages: 1, Turn: 0
+[2026-08-26T19:24:18.933Z] [INFO] [StatelessGenerate] [StatelessGenerate] Starting orchestration for agents: default-1, default-3, default-4, default-5
+[2026-08-26T19:24:18.933Z] [INFO] [StatelessGenerate] [StatelessGenerate] Message count: 1, turnCount: 0
+[2026-08-26T19:24:19.683Z] [INFO] [AISdkAdapter] [AI SDK Adapter] Response: {"textLength":26}
+[2026-08-26T19:24:19.685Z] [INFO] [DirectorGraph] [Director] Raw decision: {"next_agent":"default-1"}
+[2026-08-26T19:24:19.692Z] [INFO] [DirectorGraph] [Director] Decision: dispatch agent "default-1"
+[2026-08-26T19:24:22.608Z] [INFO] [StatelessGenerate] [StatelessGenerate] Completed. Agents: 1, Actions: 0, hadContent: true, turnCount: 1
+ POST /api/chat 200 in 12.0s (compile: 8.3s, render: 3.7s)
+[2026-08-26T19:24:23.853Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=p0, textLen=244
+ POST /api/generate/tts 200 in 3.7s (compile: 69ms, render: 3.6s)
+✓ Finished filesystem cache database compaction in 61s
+[2026-08-26T19:24:47.912Z] [INFO] [Chat API] Processing request
+[2026-08-26T19:24:47.939Z] [INFO] [Chat API] Agents: default-1, default-3, default-4, default-5, Messages: 2, Turn: 1
+[2026-08-26T19:24:47.939Z] [INFO] [StatelessGenerate] [StatelessGenerate] Starting orchestration for agents: default-1, default-3, default-4, default-5
+[2026-08-26T19:24:47.940Z] [INFO] [StatelessGenerate] [StatelessGenerate] Message count: 2, turnCount: 1
+[2026-08-26T19:24:49.532Z] [INFO] [AISdkAdapter] [AI SDK Adapter] Response: {"textLength":26}
+[2026-08-26T19:24:49.533Z] [INFO] [DirectorGraph] [Director] Raw decision: {"next_agent":"default-4"}
+[2026-08-26T19:24:49.533Z] [INFO] [DirectorGraph] [Director] Decision: dispatch agent "default-4"
+✓ Finished writing to filesystem cache in 67s
+[2026-08-26T19:24:50.869Z] [INFO] [StatelessGenerate] [StatelessGenerate] Completed. Agents: 1, Actions: 0, hadContent: true, turnCount: 2
+ POST /api/chat 200 in 3.5s (compile: 210ms, render: 3.3s)
+[2026-08-26T19:24:50.922Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=XrExE9yKIg1WjnnlVkGX, registeredVoiceId=none, audioId=p0, textLen=96
+ POST /api/generate/tts 200 in 2.6s (compile: 13ms, render: 2.6s)
+[2026-08-26T19:25:01.367Z] [INFO] [Chat API] Processing request
+[2026-08-26T19:25:01.380Z] [INFO] [Chat API] Agents: default-1, default-3, default-4, default-5, Messages: 3, Turn: 2
+[2026-08-26T19:25:01.423Z] [INFO] [StatelessGenerate] [StatelessGenerate] Starting orchestration for agents: default-1, default-3, default-4, default-5
+[2026-08-26T19:25:01.424Z] [INFO] [StatelessGenerate] [StatelessGenerate] Message count: 3, turnCount: 2
+[2026-08-26T19:25:02.523Z] [INFO] [AISdkAdapter] [AI SDK Adapter] Response: {"textLength":26}
+[2026-08-26T19:25:02.527Z] [INFO] [DirectorGraph] [Director] Raw decision: {"next_agent":"default-1"}
+[2026-08-26T19:25:02.529Z] [INFO] [DirectorGraph] [Director] Decision: dispatch agent "default-1"
+✓ Finished filesystem cache database compaction in 23.5s
+[2026-08-26T19:25:16.243Z] [INFO] [StatelessGenerate] [StatelessGenerate] Completed. Agents: 1, Actions: 2, hadContent: true, turnCount: 3
+ POST /api/chat 200 in 15.2s (compile: 127ms, render: 15.0s)
+✓ Finished writing to filesystem cache in 23.6s
+[2026-08-26T19:25:16.528Z] [INFO] [Chat API] Processing request
+[2026-08-26T19:25:16.529Z] [INFO] [Chat API] Agents: default-1, default-3, default-4, default-5, Messages: 4, Turn: 3
+[2026-08-26T19:25:16.530Z] [INFO] [StatelessGenerate] [StatelessGenerate] Starting orchestration for agents: default-1, default-3, default-4, default-5
+[2026-08-26T19:25:16.530Z] [INFO] [StatelessGenerate] [StatelessGenerate] Message count: 4, turnCount: 3
+[2026-08-26T19:25:17.998Z] [INFO] [AISdkAdapter] [AI SDK Adapter] Response: {"textLength":26}
+[2026-08-26T19:25:18.016Z] [INFO] [DirectorGraph] [Director] Raw decision: {"next_agent":"default-1"}
+[2026-08-26T19:25:18.018Z] [INFO] [DirectorGraph] [Director] Decision: dispatch agent "default-1"
+[2026-08-26T19:25:20.495Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=p0, textLen=193
+[2026-08-26T19:25:21.247Z] [INFO] [StatelessGenerate] [StatelessGenerate] Completed. Agents: 1, Actions: 5, hadContent: true, turnCount: 4
+ POST /api/chat 200 in 4.8s (compile: 21ms, render: 4.8s)
+ POST /api/generate/tts 200 in 3.4s (compile: 24ms, render: 3.4s)
+[2026-08-26T19:25:41.935Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=p1, textLen=82
+✓ Finished filesystem cache database compaction in 27.0s
+ POST /api/generate/tts 200 in 2.2s (compile: 87ms, render: 2.2s)
+[2026-08-26T19:25:51.625Z] [INFO] [Chat API] Processing request
+[2026-08-26T19:25:51.629Z] [INFO] [Chat API] Agents: default-1, default-3, default-4, default-5, Messages: 5, Turn: 4
+[2026-08-26T19:25:51.630Z] [INFO] [StatelessGenerate] [StatelessGenerate] Starting orchestration for agents: default-1, default-3, default-4, default-5
+[2026-08-26T19:25:51.631Z] [INFO] [StatelessGenerate] [StatelessGenerate] Message count: 5, turnCount: 4
+[2026-08-26T19:25:52.684Z] [INFO] [AISdkAdapter] [AI SDK Adapter] Response: {"textLength":26}
+[2026-08-26T19:25:52.685Z] [INFO] [DirectorGraph] [Director] Raw decision: {"next_agent":"default-4"}
+[2026-08-26T19:25:52.686Z] [INFO] [DirectorGraph] [Director] Decision: dispatch agent "default-4"
+[2026-08-26T19:25:54.508Z] [INFO] [StatelessGenerate] [StatelessGenerate] Completed. Agents: 1, Actions: 0, hadContent: true, turnCount: 5
+ POST /api/chat 200 in 3.0s (compile: 50ms, render: 2.9s)
+[2026-08-26T19:25:54.539Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=XrExE9yKIg1WjnnlVkGX, registeredVoiceId=none, audioId=p0, textLen=97
+ POST /api/generate/tts 200 in 2.9s (compile: 6ms, render: 2.9s)
+[2026-08-26T19:26:06.840Z] [INFO] [Chat API] Processing request
+[2026-08-26T19:26:06.841Z] [INFO] [Chat API] Agents: default-1, default-3, default-4, default-5, Messages: 6, Turn: 5
+[2026-08-26T19:26:06.842Z] [INFO] [StatelessGenerate] [StatelessGenerate] Starting orchestration for agents: default-1, default-3, default-4, default-5
+[2026-08-26T19:26:06.842Z] [INFO] [StatelessGenerate] [StatelessGenerate] Message count: 6, turnCount: 5
+[2026-08-26T19:26:07.689Z] [INFO] [AISdkAdapter] [AI SDK Adapter] Response: {"textLength":26}
+[2026-08-26T19:26:07.691Z] [INFO] [DirectorGraph] [Director] Raw decision: {"next_agent":"default-1"}
+[2026-08-26T19:26:07.692Z] [INFO] [DirectorGraph] [Director] Decision: dispatch agent "default-1"
+[2026-08-26T19:26:11.239Z] [INFO] [StatelessGenerate] [StatelessGenerate] Completed. Agents: 1, Actions: 1, hadContent: true, turnCount: 6
+ POST /api/chat 200 in 4.4s (compile: 15ms, render: 4.4s)
+[2026-08-26T19:26:11.312Z] [INFO] [Chat API] Processing request
+[2026-08-26T19:26:11.314Z] [INFO] [Chat API] Agents: default-1, default-3, default-4, default-5, Messages: 7, Turn: 6
+[2026-08-26T19:26:11.315Z] [INFO] [StatelessGenerate] [StatelessGenerate] Starting orchestration for agents: default-1, default-3, default-4, default-5
+[2026-08-26T19:26:11.315Z] [INFO] [StatelessGenerate] [StatelessGenerate] Message count: 7, turnCount: 6
+[2026-08-26T19:26:12.483Z] [INFO] [AISdkAdapter] [AI SDK Adapter] Response: {"textLength":26}
+[2026-08-26T19:26:12.485Z] [INFO] [DirectorGraph] [Director] Raw decision: {"next_agent":"default-1"}
+[2026-08-26T19:26:12.485Z] [INFO] [DirectorGraph] [Director] Decision: dispatch agent "default-1"
+[2026-08-26T19:26:15.762Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=p0, textLen=118
+[2026-08-26T19:26:16.436Z] [INFO] [StatelessGenerate] [StatelessGenerate] Completed. Agents: 1, Actions: 7, hadContent: true, turnCount: 7
+ POST /api/chat 200 in 5.1s (compile: 5ms, render: 5.1s)
+ POST /api/generate/tts 200 in 2.5s (compile: 5ms, render: 2.5s)
+[2026-08-26T19:26:28.001Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=p1, textLen=114
+ POST /api/generate/tts 200 in 2.4s (compile: 18ms, render: 2.4s)
+[2026-08-26T19:26:34.703Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s2_action_w9zoXbWL, textLen=144
+[2026-08-26T19:26:34.710Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s2_action_0-D_XVNh, textLen=137
+[2026-08-26T19:26:34.715Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s2_action_pBIiiNIL, textLen=165
+ POST /api/generate/tts 200 in 2.6s (compile: 21ms, render: 2.6s)
+ POST /api/generate/tts 200 in 2.6s (compile: 15ms, render: 2.6s)
+[2026-08-26T19:26:37.332Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s2_action_XRMmaRfC, textLen=180
+ POST /api/generate/tts 200 in 2.8s (compile: 7ms, render: 2.8s)
+ POST /api/generate/tts 200 in 3.6s (compile: 3ms, render: 3.6s)
+[2026-08-26T19:26:52.163Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s4_action_8ciwMpJj, textLen=170
+[2026-08-26T19:26:52.174Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s4_action_fa45Ygth, textLen=102
+[2026-08-26T19:26:52.183Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s4_action_RJB5aOs6, textLen=183
+ POST /api/generate/tts 200 in 2.1s (compile: 50ms, render: 2.1s)
+ POST /api/generate/tts 200 in 3.0s (compile: 19ms, render: 2.9s)
+ POST /api/generate/tts 200 in 3.1s (compile: 4ms, render: 3.1s)
+[2026-08-26T19:26:56.354Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_ABpEyRqG, textLen=178
+[2026-08-26T19:26:56.362Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_b4Ik2lye, textLen=225
+[2026-08-26T19:26:56.365Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_M4guXrxP, textLen=237
+ POST /api/generate/tts 200 in 2.2s (compile: 15ms, render: 2.2s)
+[2026-08-26T19:26:58.575Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s7_action_GeDZonMs, textLen=222
+[2026-08-26T19:26:58.586Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s7_action_3jSaczNN, textLen=201
+[2026-08-26T19:26:58.597Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s7_action_w63-mPic, textLen=138
+[2026-08-26T19:26:58.616Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_6SejXwYO, textLen=171
+ POST /api/generate/tts 200 in 2.6s (compile: 26ms, render: 2.5s)
+[2026-08-26T19:26:58.919Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_3QLi7BtR, textLen=202
+ POST /api/generate/tts 200 in 2.8s (compile: 23ms, render: 2.8s)
+[2026-08-26T19:26:59.188Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_V7qDZ4mK, textLen=229
+[2026-08-26T19:26:59.393Z] [ERROR] [TTS API] TTS generation failed [provider=elevenlabs-tts, voice=EXAVITQu4vr4xnSDxMaL, audioId=tts_s5_action_V7qDZ4mK]: TTSRateLimitError: ElevenLabs TTS rate limit exceeded (HTTP 429)
+    at throwIfTtsRateLimited (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3035:15)
+    at generateElevenLabsTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3555:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3060:20)
+ POST /api/generate/tts 429 in 220ms (compile: 3ms, render: 217ms)
+[2026-08-26T19:26:59.793Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_jTbg91th, textLen=167
+[2026-08-26T19:26:59.999Z] [ERROR] [TTS API] TTS generation failed [provider=elevenlabs-tts, voice=EXAVITQu4vr4xnSDxMaL, audioId=tts_s8_action_jTbg91th]: TTSRateLimitError: ElevenLabs TTS rate limit exceeded (HTTP 429)
+    at throwIfTtsRateLimited (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3035:15)
+    at generateElevenLabsTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3555:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3060:20)
+ POST /api/generate/tts 429 in 215ms (compile: 3ms, render: 212ms)
+[2026-08-26T19:27:00.013Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_d6EnQff6, textLen=211
+[2026-08-26T19:27:00.218Z] [ERROR] [TTS API] TTS generation failed [provider=elevenlabs-tts, voice=EXAVITQu4vr4xnSDxMaL, audioId=tts_s8_action_d6EnQff6]: TTSRateLimitError: ElevenLabs TTS rate limit exceeded (HTTP 429)
+    at throwIfTtsRateLimited (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3035:15)
+    at generateElevenLabsTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3555:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3060:20)
+ POST /api/generate/tts 429 in 214ms (compile: 3ms, render: 211ms)
+[2026-08-26T19:27:00.230Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_ziArGL7j, textLen=249
+[2026-08-26T19:27:00.432Z] [ERROR] [TTS API] TTS generation failed [provider=elevenlabs-tts, voice=EXAVITQu4vr4xnSDxMaL, audioId=tts_s8_action_ziArGL7j]: TTSRateLimitError: ElevenLabs TTS rate limit exceeded (HTTP 429)
+    at throwIfTtsRateLimited (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3035:15)
+    at generateElevenLabsTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3555:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3060:20)
+ POST /api/generate/tts 429 in 210ms (compile: 3ms, render: 208ms)
+[2026-08-26T19:27:00.609Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_V7qDZ4mK, textLen=229
+ POST /api/generate/tts 200 in 2.7s (compile: 16ms, render: 2.7s)
+[2026-08-26T19:27:01.267Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_jTbg91th, textLen=167
+ POST /api/generate/tts 200 in 2.8s (compile: 5ms, render: 2.8s)
+[2026-08-26T19:27:01.367Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s7_action_AgoC3qeu, textLen=165
+ POST /api/generate/tts 200 in 2.5s (compile: 3ms, render: 2.5s)
+[2026-08-26T19:27:01.398Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_d6EnQff6, textLen=211
+ POST /api/generate/tts 200 in 2.9s (compile: 1364µs, render: 2.9s)
+[2026-08-26T19:27:01.521Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s7_action_GgU_j5G8, textLen=231
+ POST /api/generate/tts 200 in 3.3s (compile: 4ms, render: 3.3s)
+[2026-08-26T19:27:01.862Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_YZI4PXQe, textLen=217
+[2026-08-26T19:27:02.058Z] [ERROR] [TTS API] TTS generation failed [provider=elevenlabs-tts, voice=EXAVITQu4vr4xnSDxMaL, audioId=tts_s5_action_YZI4PXQe]: TTSRateLimitError: ElevenLabs TTS rate limit exceeded (HTTP 429)
+    at throwIfTtsRateLimited (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3035:15)
+    at generateElevenLabsTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3555:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3060:20)
+ POST /api/generate/tts 429 in 207ms (compile: 2ms, render: 204ms)
+[2026-08-26T19:27:02.064Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_ziArGL7j, textLen=249
+[2026-08-26T19:27:02.248Z] [ERROR] [TTS API] TTS generation failed [provider=elevenlabs-tts, voice=EXAVITQu4vr4xnSDxMaL, audioId=tts_s8_action_ziArGL7j]: TTSRateLimitError: ElevenLabs TTS rate limit exceeded (HTTP 429)
+    at throwIfTtsRateLimited (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3035:15)
+    at generateElevenLabsTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3555:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateTTS (/Users/ayahalshanfari/Desktop/AI-MVP/MASAR/.next/dev/server/chunks/[root-of-the-server]__f5c0e709._.js:3060:20)
+ POST /api/generate/tts 429 in 189ms (compile: 1173µs, render: 188ms)
+ POST /api/generate/tts 200 in 2.6s (compile: 4ms, render: 2.6s)
+[2026-08-26T19:27:03.238Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s5_action_YZI4PXQe, textLen=217
+ POST /api/generate/tts 200 in 2.2s (compile: 10ms, render: 2.2s)
+[2026-08-26T19:27:03.459Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_ZKGin5Qw, textLen=280
+ POST /api/generate/tts 200 in 2.4s (compile: 2ms, render: 2.4s)
+[2026-08-26T19:27:03.839Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_U6SnBFEy, textLen=244
+ POST /api/generate/tts 200 in 2.7s (compile: 7ms, render: 2.7s)
+ POST /api/generate/tts 200 in 2.9s (compile: 4ms, render: 2.9s)
+[2026-08-26T19:27:04.354Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_ziArGL7j, textLen=249
+ POST /api/generate/tts 200 in 2.7s (compile: 10ms, render: 2.6s)
+ POST /api/generate/tts 200 in 2.7s (compile: 3ms, render: 2.7s)
+[2026-08-26T19:27:06.164Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s8_action_YRKw6zup, textLen=335
+ POST /api/generate/tts 200 in 2.5s (compile: 3ms, render: 2.5s)
+ POST /api/generate/tts 200 in 2.8s (compile: 7ms, render: 2.8s)
+ POST /api/generate/tts 200 in 3.4s (compile: 4ms, render: 3.4s)
+[2026-08-26T19:27:47.908Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s3_action_DMGsUJDH, textLen=339
+[2026-08-26T19:27:47.945Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s3_action_1MAHKo0T, textLen=334
+[2026-08-26T19:27:47.954Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s3_action_JKVXZPQO, textLen=276
+ POST /api/generate/tts 200 in 3.5s (compile: 82ms, render: 3.4s)
+[2026-08-26T19:27:51.447Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s3_action_dcfKR2v8, textLen=296
+ POST /api/generate/tts 200 in 4.3s (compile: 97ms, render: 4.2s)
+ POST /api/generate/tts 200 in 4.3s (compile: 22ms, render: 4.2s)
+[2026-08-26T19:27:52.140Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s3_action_O40w-1at, textLen=160
+[2026-08-26T19:27:52.159Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s3_action_bQwAmnwJ, textLen=359
+ POST /api/generate/tts 200 in 1977ms (compile: 3ms, render: 1974ms)
+ POST /api/generate/tts 200 in 2.7s (compile: 10ms, render: 2.7s)
+[2026-08-26T19:27:54.147Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s3_action_IinuwVQ1, textLen=202
+ POST /api/generate/tts 200 in 3.9s (compile: 4ms, render: 3.9s)
+ POST /api/generate/tts 200 in 2.5s (compile: 5ms, render: 2.5s)
+[2026-08-26T19:28:01.669Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s6_action_UMgRpeaa, textLen=179
+[2026-08-26T19:28:01.683Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s6_action_Oddc8BMv, textLen=166
+[2026-08-26T19:28:01.686Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=tts_s6_action_p-tnSR1h, textLen=257
+ POST /api/generate/tts 200 in 3.5s (compile: 13ms, render: 3.5s)
+ POST /api/generate/tts 200 in 3.5s (compile: 30ms, render: 3.5s)
+ POST /api/generate/tts 200 in 3.7s (compile: 30ms, render: 3.7s)
+ GET / 200 in 301ms (compile: 183ms, render: 118ms)
+ GET /api/comfyui-workflows 200 in 23ms (compile: 14ms, render: 9ms)
+ GET /api/comfyui-workflows 200 in 10ms (compile: 3ms, render: 7ms)
+✓ Compiled in 4.7s
+✓ Finished writing to filesystem cache in 20.5s
+✓ Compiled in 320ms
+⚠ Fast Refresh had to perform a full reload when ./lib/i18n/locales/ar-SA.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 4.4s (compile: 613ms, render: 3.8s)
+ GET /api/comfyui-workflows 200 in 60ms (compile: 18ms, render: 42ms)
+ GET /api/server-providers 200 in 121ms (compile: 103ms, render: 17ms)
+✓ Finished filesystem cache database compaction in 26.6s
+ GET / 200 in 869ms (compile: 598ms, render: 271ms)
+ GET / 200 in 30ms (compile: 6ms, render: 24ms)
+ GET / 200 in 27ms (compile: 6ms, render: 21ms)
+✓ Finished filesystem cache database compaction in 13.0s
+[2026-08-26T19:48:43.622Z] [INFO] [TTS API] Generating TTS: provider=elevenlabs-tts, model=eleven_multilingual_v2, voice=EXAVITQu4vr4xnSDxMaL, registeredVoiceId=none, audioId=preview, textLen=24
+ POST /api/generate/tts 200 in 2.1s (compile: 50ms, render: 2.0s)
+ GET / 200 in 4.4s (compile: 103ms, render: 4.3s)
+ GET /api/server-providers 200 in 41ms (compile: 24ms, render: 18ms)
+ GET /api/comfyui-workflows 200 in 60ms (compile: 53ms, render: 8ms)
+ GET / 200 in 141ms (compile: 36ms, render: 104ms)
+ GET /api/server-providers 200 in 9ms (compile: 6ms, render: 3ms)
+ GET /api/comfyui-workflows 200 in 14ms (compile: 10ms, render: 4ms)
+ GET / 200 in 126ms (compile: 37ms, render: 89ms)
+ GET /api/server-providers 200 in 7ms (compile: 3ms, render: 4ms)
+ GET /api/comfyui-workflows 200 in 12ms (compile: 9ms, render: 3ms)
+ GET / 200 in 377ms (compile: 295ms, render: 83ms)
+ GET / 200 in 39ms (compile: 3ms, render: 36ms)
+ GET / 200 in 18ms (compile: 4ms, render: 14ms)
+ GET / 200 in 1386ms (compile: 32ms, render: 1354ms)
+ GET /api/server-providers 200 in 99ms (compile: 60ms, render: 38ms)
+ GET /api/comfyui-workflows 200 in 98ms (compile: 86ms, render: 12ms)
+○ Compiling /api/prebuilt-classrooms ...
+ GET /api/prebuilt-classrooms 200 in 4.4s (compile: 4.3s, render: 57ms)
+ GET / 200 in 218ms (compile: 51ms, render: 167ms)
+ GET /api/server-providers 200 in 11ms (compile: 5ms, render: 5ms)
+ GET /api/comfyui-workflows 200 in 14ms (compile: 10ms, render: 4ms)
+ GET / 200 in 127ms (compile: 28ms, render: 98ms)
+ GET /api/server-providers 200 in 36ms (compile: 14ms, render: 22ms)
+ GET /api/comfyui-workflows 200 in 17ms (compile: 6ms, render: 11ms)
+ GET / 200 in 134ms (compile: 35ms, render: 99ms)
+ GET /api/server-providers 200 in 12ms (compile: 9ms, render: 4ms)
+ GET /api/comfyui-workflows 200 in 16ms (compile: 11ms, render: 6ms)
+ GET / 200 in 194ms (compile: 56ms, render: 139ms)
+ GET /api/server-providers 200 in 73ms (compile: 42ms, render: 31ms)
+ GET /api/comfyui-workflows 200 in 23ms (compile: 17ms, render: 6ms)
+ GET / 200 in 397ms (compile: 193ms, render: 204ms)
+ GET /api/server-providers 200 in 26ms (compile: 3ms, render: 23ms)
+ GET /api/comfyui-workflows 200 in 10ms (compile: 3ms, render: 7ms)
+ GET / 200 in 159ms (compile: 26ms, render: 133ms)
+ GET /api/server-providers 200 in 22ms (compile: 14ms, render: 9ms)
+ GET /api/comfyui-workflows 200 in 8ms (compile: 3ms, render: 5ms)
+✓ Compiled in 1438ms
+ GET /api/comfyui-workflows 200 in 85ms (compile: 30ms, render: 55ms)
+✓ Compiled in 337ms
+ GET / 200 in 4.7s (compile: 1116ms, render: 3.6s)
+ GET /api/server-providers 200 in 27ms (compile: 6ms, render: 21ms)
+ GET /api/comfyui-workflows 200 in 24ms (compile: 15ms, render: 8ms)
+✓ Compiled in 547ms
+✓ Compiled in 197ms
+ GET / 200 in 1528ms (compile: 370ms, render: 1158ms)
+ GET /api/server-providers 200 in 18ms (compile: 7ms, render: 11ms)
+ GET /api/comfyui-workflows 200 in 10ms (compile: 6ms, render: 4ms)
+ GET / 200 in 123ms (compile: 25ms, render: 98ms)
+ GET /api/server-providers 200 in 7ms (compile: 2ms, render: 5ms)
+ GET /api/comfyui-workflows 200 in 10ms (compile: 7ms, render: 2ms)
+✓ Compiled in 278ms

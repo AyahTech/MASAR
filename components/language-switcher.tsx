@@ -13,6 +13,8 @@ import {
 interface LanguageSwitcherProps {
   /** Called when the dropdown opens, so parent can close sibling dropdowns. */
   onOpen?: () => void;
+  /** Optional className for the trigger button. */
+  triggerClassName?: string;
 }
 
 /**
@@ -21,7 +23,7 @@ interface LanguageSwitcherProps {
  * (which lives under an `overflow-hidden` canvas slot that would
  * otherwise clip the dropdown).
  */
-export function LanguageSwitcher({ onOpen }: LanguageSwitcherProps) {
+export function LanguageSwitcher({ onOpen, triggerClassName }: LanguageSwitcherProps) {
   const { locale, setLocale } = useI18n();
 
   return (
@@ -32,7 +34,13 @@ export function LanguageSwitcher({ onOpen }: LanguageSwitcherProps) {
       }}
     >
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-sm transition-all">
+        <button
+          className={cn(
+            'flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold transition-all',
+            triggerClassName ||
+              'text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-sm',
+          )}
+        >
           {supportedLocales.find((l) => l.code === locale)?.shortLabel ?? locale}
         </button>
       </DropdownMenuTrigger>

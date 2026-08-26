@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
+import { Plus_Jakarta_Sans, Tajawal } from 'next/font/google';
 import './globals.css';
 import '@openmaic/renderer/fonts.css';
 import 'animate.css';
@@ -10,7 +11,6 @@ import { I18nProvider } from '@/lib/hooks/use-i18n';
 import { Toaster } from '@/components/ui/sonner';
 import { ServerProvidersInit } from '@/components/server-providers-init';
 import { StorageHealthNotice } from '@/components/storage-health-notice';
-import { AccessCodeGuard } from '@/components/access-code-guard';
 
 // The UI font is loaded from @fontsource's stylesheet rather than next/font,
 // because only the stylesheet carries the per-subset `unicode-range`
@@ -27,6 +27,20 @@ import { AccessCodeGuard } from '@/components/access-code-guard';
 // next/font's generated class.
 import '@fontsource-variable/inter';
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-heading',
+  display: 'swap',
+});
+
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  weight: ['500', '700'],
+  variable: '--font-arabic',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'MASAR',
   description:
@@ -41,13 +55,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${plusJakartaSans.variable} ${tajawal.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider>
           <I18nProvider>
             <ServerProvidersInit />
-            <AccessCodeGuard>{children}</AccessCodeGuard>
+            {children}
             <Toaster position="top-center" />
             {/* After the Toaster: this one raises a toast on mount when
                 persistence is already broken, and a toast raised before its

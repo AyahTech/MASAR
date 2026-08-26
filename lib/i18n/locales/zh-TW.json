@@ -6,8 +6,10 @@
     "loading": "載入中..."
   },
   "home": {
-    "slogan": "多智能體互動課室中的生成式學習",
-    "greetingWithName": "嗨，{{name}}"
+    "heroTitlePrefix": "Your ",
+    "heroTitleHighlight": "path",
+    "heroTitleSuffix": " to mastering every course.",
+    "greetingWithName": "Hi, {{name}}"
   },
   "toolbar": {
     "pdfParser": "解析器",
@@ -1825,11 +1827,6 @@
     "speed": "語速",
     "language": "語言"
   },
-  "accessCode": {
-    "title": "請輸入課堂碼",
-    "placeholder": "課堂碼",
-    "error": "課堂碼錯誤，請重試。"
-  },
   "classroomComplete": {
     "title": "課程完成",
     "trailLabels": {
@@ -1843,6 +1840,60 @@
       "high": "太棒了，你答對了！",
       "mid": "做得好，繼續保持！",
       "low": "不錯的開始，回顧一下再試一次。"
+    }
+  },
+  "discover": {
+    "tabDiscover": "Discover",
+    "tabMyCourses": "My Courses",
+    "filterAll": "All",
+    "filterMath": "Mathematics",
+    "filterCS": "Computer Science",
+    "filterScience": "Sciences",
+    "filterArabic": "Arabic & Humanities",
+    "filterBusiness": "Business",
+    "views": "{{count}} views",
+    "students": "{{count}} students",
+    "courses": {
+      "limits": {
+        "title": "Limits & Continuity",
+        "description": "Master one-sided limits, asymptotes, and continuity with visual, step-by-step walkthroughs.",
+        "tag": "Mathematics"
+      },
+      "db": {
+        "title": "Database Normalization",
+        "description": "Turn messy spreadsheets into clean relational tables, one normal form at a time.",
+        "tag": "Computer Science",
+        "table1": "Students",
+        "row1": "id · name · major",
+        "table2": "Enrollments",
+        "row2": "student_id · course_id",
+        "table3": "Courses",
+        "row3": "id · title · credits",
+        "panelLabel": "Normal Form"
+      },
+      "bio": {
+        "title": "Cell Structure",
+        "description": "Explore organelles layer by layer, from membrane to nucleus.",
+        "tag": "Biology"
+      },
+      "phys": {
+        "title": "Newton's Laws",
+        "description": "Feel the push and pull behind every motion problem.",
+        "tag": "Physics"
+      },
+      "arabic": {
+        "title": "Arabic Morphology — الصرف",
+        "description": "Break words to their root pattern, in Arabic and English side by side.",
+        "tag": "Arabic Language",
+        "rootLetters": "ك ت ب",
+        "pattern1": "فَعَلَ",
+        "pattern2": "كَاتِب"
+      },
+      "biz": {
+        "title": "Mean & Variance",
+        "description": "Turn raw data into decisions with core statistical measures.",
+        "tag": "Business"
+      }
     }
   }
 }

@@ -72,6 +72,7 @@
     padding:6px 12px;
     border-radius:999px;
     color:var(--grey-soft);
+    cursor:pointer;
   }
   .lang-toggle span.active{
     background:var(--purple-deep);
@@ -422,6 +423,38 @@
   @media (prefers-reduced-motion: reduce){
     *{ transition:none !important; }
   }
+
+  /* ---------------- Arabic language mode ----------------
+     Only swaps the font and fixes reading direction on text
+     blocks so Arabic renders naturally. Layout/positions/colors
+     are untouched. */
+  body.lang-ar .hero h1,
+  body.lang-ar .prompt-text .placeholder,
+  body.lang-ar .prompt-text .examples,
+  body.lang-ar .card-body h3,
+  body.lang-ar .card-body p,
+  body.lang-ar footer p,
+  body.lang-ar .greet-chip,
+  body.lang-ar .agents-label,
+  body.lang-ar .mode-pill,
+  body.lang-ar .cta-btn,
+  body.lang-ar .tabs a,
+  body.lang-ar .filters span,
+  body.lang-ar .tag-pill,
+  body.lang-ar .btn-login,
+  body.lang-ar .db-table,
+  body.lang-ar .db-panel .lbl{
+    font-family:'Tajawal', sans-serif;
+  }
+  body.lang-ar .hero h1,
+  body.lang-ar .prompt-text .placeholder,
+  body.lang-ar .prompt-text .examples,
+  body.lang-ar .card-body h3,
+  body.lang-ar .card-body p,
+  body.lang-ar footer p{
+    direction:rtl;
+    text-align:right;
+  }
 </style>
 </head>
 <body>
@@ -433,10 +466,10 @@
     </div>
     <div class="header-actions">
       <div class="lang-toggle">
-        <span class="active">EN</span>
-        <span class="ar">عربي</span>
+        <span class="active" id="langBtnEn" onclick="setLanguage('en')">EN</span>
+        <span class="ar" id="langBtnAr" onclick="setLanguage('ar')">عربي</span>
       </div>
-      <a class="btn-login" href="#">Log in</a>
+      <a class="btn-login" href="#" id="i18n-login">Log in</a>
     </div>
   </header>
 
@@ -457,16 +490,16 @@
       <circle cx="900" cy="55" r="5" fill="#E9A5F1"/>
     </svg>
 
-    <h1>Your <span class="grad">path</span> to mastering every course.</h1>
+    <h1 id="i18n-hero-title">Your <span class="grad">path</span> to mastering every course.</h1>
 
     <div class="prompt-card">
       <div class="prompt-top">
         <div class="greet-chip">
           <span class="avatar"></span>
-          Hi, Learner
+          <span id="i18n-greet">Hi, Learner</span>
         </div>
         <div class="agents-chip">
-          <span class="agents-label">Ready to learn together?</span>
+          <span class="agents-label" id="i18n-agents-label">Ready to learn together?</span>
           <div class="agents-avatars">
             <span class="agent-avatar agent-teacher" title="AI Teacher">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
@@ -482,8 +515,8 @@
         </div>
       </div>
       <div class="prompt-text">
-        <div class="placeholder">Ask me anything about your courses&hellip;</div>
-        <div class="examples">
+        <div class="placeholder" id="i18n-placeholder">Ask me anything about your courses&hellip;</div>
+        <div class="examples" id="i18n-examples">
           "Explain limits before my Calculus exam"<br>
           "Summarize Chapter 4 — الخلية (Cell Biology)"<br>
           "Quiz me on database normalization"
@@ -496,7 +529,7 @@
           </span>
           <span class="mode-pill">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 8-4 8-4-8 4 2 4-2z"/></svg>
-            Adaptive Mode
+            <span id="i18n-mode-pill">Adaptive Mode</span>
           </span>
         </div>
         <div class="prompt-footer-right">
@@ -504,7 +537,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 9.5 8.5 3 11l6.5 2.5L12 20l2.5-6.5L21 11l-6.5-2.5L12 2z"/></svg>
           </span>
           <a class="cta-btn" href="#">
-            Start Learning
+            <span id="i18n-cta">Start Learning</span>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -515,16 +548,16 @@
   <section class="catalog">
     <div class="catalog-top">
       <div class="tabs">
-        <a class="active">Discover</a>
-        <a>My Courses</a>
+        <a class="active" id="i18n-tab-discover">Discover</a>
+        <a id="i18n-tab-mycourses">My Courses</a>
       </div>
       <div class="filters">
-        <span class="active">All</span>
-        <span>Mathematics</span>
-        <span>Computer Science</span>
-        <span>Sciences</span>
-        <span>Arabic &amp; Humanities</span>
-        <span>Business</span>
+        <span class="active" id="i18n-filter-all">All</span>
+        <span id="i18n-filter-math">Mathematics</span>
+        <span id="i18n-filter-cs">Computer Science</span>
+        <span id="i18n-filter-sci">Sciences</span>
+        <span id="i18n-filter-arabic">Arabic &amp; Humanities</span>
+        <span id="i18n-filter-biz">Business</span>
       </div>
     </div>
 
@@ -533,7 +566,7 @@
       <!-- Featured: Math -->
       <div class="course-card">
         <div class="card-visual visual-math">
-          <span class="tag-pill tag-glass">Mathematics</span>
+          <span class="tag-pill tag-glass" id="i18n-tag-math">Mathematics</span>
           <div class="stat-pills">
             <span class="stat-pill">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -561,15 +594,15 @@
           </svg>
         </div>
         <div class="card-body">
-          <h3>Limits &amp; Continuity</h3>
-          <p>Master one-sided limits, asymptotes, and continuity with visual, step-by-step walkthroughs.</p>
+          <h3 id="i18n-h3-math">Limits &amp; Continuity</h3>
+          <p id="i18n-p-math">Master one-sided limits, asymptotes, and continuity with visual, step-by-step walkthroughs.</p>
         </div>
       </div>
 
       <!-- Featured: Database -->
       <div class="course-card">
         <div class="card-visual visual-db">
-          <span class="tag-pill tag-light">Computer Science</span>
+          <span class="tag-pill tag-light" id="i18n-tag-cs">Computer Science</span>
           <div class="stat-pills">
             <span class="stat-pill">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -582,19 +615,19 @@
           </div>
           <div class="db-wrap">
             <div class="db-tables">
-              <div class="db-table">Students<div class="row">id · name · major</div></div>
-              <div class="db-table">Enrollments<div class="row">student_id · course_id</div></div>
-              <div class="db-table">Courses<div class="row">id · title · credits</div></div>
+              <div class="db-table"><span id="i18n-db-t1">Students</span><div class="row" id="i18n-db-r1">id · name · major</div></div>
+              <div class="db-table"><span id="i18n-db-t2">Enrollments</span><div class="row" id="i18n-db-r2">student_id · course_id</div></div>
+              <div class="db-table"><span id="i18n-db-t3">Courses</span><div class="row" id="i18n-db-r3">id · title · credits</div></div>
             </div>
             <div class="db-panel">
-              <div class="lbl">Normal Form</div>
+              <div class="lbl" id="i18n-db-panel-label">Normal Form</div>
               <div class="db-steps"><span>1NF</span><span>2NF</span><span class="on">3NF</span></div>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <h3>Database Normalization</h3>
-          <p>Turn messy spreadsheets into clean relational tables, one normal form at a time.</p>
+          <h3 id="i18n-h3-db">Database Normalization</h3>
+          <p id="i18n-p-db">Turn messy spreadsheets into clean relational tables, one normal form at a time.</p>
         </div>
       </div>
     </div>
@@ -604,7 +637,7 @@
       <!-- Biology -->
       <div class="course-card">
         <div class="card-visual visual-bio">
-          <span class="tag-pill tag-blush">Biology</span>
+          <span class="tag-pill tag-blush" id="i18n-tag-bio">Biology</span>
           <div class="stat-pills">
             <span class="stat-pill">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -621,15 +654,15 @@
           </svg>
         </div>
         <div class="card-body">
-          <h3>Cell Structure</h3>
-          <p>Explore organelles layer by layer, from membrane to nucleus.</p>
+          <h3 id="i18n-h3-bio">Cell Structure</h3>
+          <p id="i18n-p-bio">Explore organelles layer by layer, from membrane to nucleus.</p>
         </div>
       </div>
 
       <!-- Physics -->
       <div class="course-card">
         <div class="card-visual visual-phys">
-          <span class="tag-pill tag-light">Physics</span>
+          <span class="tag-pill tag-light" id="i18n-tag-phys">Physics</span>
           <div class="stat-pills">
             <span class="stat-pill">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -647,15 +680,15 @@
           </svg>
         </div>
         <div class="card-body">
-          <h3>Newton&rsquo;s Laws</h3>
-          <p>Feel the push and pull behind every motion problem.</p>
+          <h3 id="i18n-h3-phys">Newton&rsquo;s Laws</h3>
+          <p id="i18n-p-phys">Feel the push and pull behind every motion problem.</p>
         </div>
       </div>
 
       <!-- Arabic -->
       <div class="course-card">
         <div class="card-visual visual-arabic">
-          <span class="tag-pill tag-blush">Arabic Language</span>
+          <span class="tag-pill tag-blush" id="i18n-tag-arabiclang">Arabic Language</span>
           <div class="stat-pills">
             <span class="stat-pill">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -666,15 +699,15 @@
           <div class="arabic-pattern"><span>فَعَلَ</span><span>كَاتِب</span></div>
         </div>
         <div class="card-body">
-          <h3>Arabic Morphology — الصرف</h3>
-          <p>Break words to their root pattern, in Arabic and English side by side.</p>
+          <h3 id="i18n-h3-arabiclang">Arabic Morphology — الصرف</h3>
+          <p id="i18n-p-arabiclang">Break words to their root pattern, in Arabic and English side by side.</p>
         </div>
       </div>
 
       <!-- Business -->
       <div class="course-card">
         <div class="card-visual visual-biz">
-          <span class="tag-pill tag-light">Business</span>
+          <span class="tag-pill tag-light" id="i18n-tag-biz">Business</span>
           <div class="stat-pills">
             <span class="stat-pill">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -688,8 +721,8 @@
           </svg>
         </div>
         <div class="card-body">
-          <h3>Mean &amp; Variance</h3>
-          <p>Turn raw data into decisions with core statistical measures.</p>
+          <h3 id="i18n-h3-biz">Mean &amp; Variance</h3>
+          <p id="i18n-p-biz">Turn raw data into decisions with core statistical measures.</p>
         </div>
       </div>
 
@@ -698,8 +731,123 @@
 
   <footer>
     <img src="masar-mark.png" alt="Masar">
-    <p>&copy; 2026 Masar — your path through university.</p>
+    <p id="i18n-footer">&copy; 2026 Masar — your path through university.</p>
   </footer>
+
+<script>
+  var translations = {
+    en: {
+      "i18n-login": "Log in",
+      "i18n-hero-title": 'Your <span class="grad">path</span> to mastering every course.',
+      "i18n-greet": "Hi, Learner",
+      "i18n-agents-label": "Ready to learn together?",
+      "i18n-placeholder": "Ask me anything about your courses&hellip;",
+      "i18n-examples": '"Explain limits before my Calculus exam"<br>\n          "Summarize Chapter 4 — الخلية (Cell Biology)"<br>\n          "Quiz me on database normalization"',
+      "i18n-mode-pill": "Adaptive Mode",
+      "i18n-cta": "Start Learning",
+      "i18n-tab-discover": "Discover",
+      "i18n-tab-mycourses": "My Courses",
+      "i18n-filter-all": "All",
+      "i18n-filter-math": "Mathematics",
+      "i18n-filter-cs": "Computer Science",
+      "i18n-filter-sci": "Sciences",
+      "i18n-filter-arabic": "Arabic &amp; Humanities",
+      "i18n-filter-biz": "Business",
+      "i18n-tag-math": "Mathematics",
+      "i18n-h3-math": "Limits &amp; Continuity",
+      "i18n-p-math": "Master one-sided limits, asymptotes, and continuity with visual, step-by-step walkthroughs.",
+      "i18n-tag-cs": "Computer Science",
+      "i18n-db-t1": "Students",
+      "i18n-db-r1": "id · name · major",
+      "i18n-db-t2": "Enrollments",
+      "i18n-db-r2": "student_id · course_id",
+      "i18n-db-t3": "Courses",
+      "i18n-db-r3": "id · title · credits",
+      "i18n-db-panel-label": "Normal Form",
+      "i18n-h3-db": "Database Normalization",
+      "i18n-p-db": "Turn messy spreadsheets into clean relational tables, one normal form at a time.",
+      "i18n-tag-bio": "Biology",
+      "i18n-h3-bio": "Cell Structure",
+      "i18n-p-bio": "Explore organelles layer by layer, from membrane to nucleus.",
+      "i18n-tag-phys": "Physics",
+      "i18n-h3-phys": "Newton&rsquo;s Laws",
+      "i18n-p-phys": "Feel the push and pull behind every motion problem.",
+      "i18n-tag-arabiclang": "Arabic Language",
+      "i18n-h3-arabiclang": "Arabic Morphology — الصرف",
+      "i18n-p-arabiclang": "Break words to their root pattern, in Arabic and English side by side.",
+      "i18n-tag-biz": "Business",
+      "i18n-h3-biz": "Mean &amp; Variance",
+      "i18n-p-biz": "Turn raw data into decisions with core statistical measures.",
+      "i18n-footer": "&copy; 2026 Masar — your path through university."
+    },
+    ar: {
+      "i18n-login": "تسجيل الدخول",
+      "i18n-hero-title": '<span class="grad">طريقك</span> إلى إتقان كل مقرر دراسي.',
+      "i18n-greet": "مرحباً، أيها المتعلم",
+      "i18n-agents-label": "مستعد للتعلم معاً؟",
+      "i18n-placeholder": "اسألني أي شيء عن مقرراتك الدراسية&hellip;",
+      "i18n-examples": '"اشرح لي النهايات قبل امتحان التفاضل والتكامل"<br>\n          "لخّص الفصل الرابع: الخلية (Cell Biology)"<br>\n          "اختبرني في تسوية قواعد البيانات"',
+      "i18n-mode-pill": "الوضع التكيفي",
+      "i18n-cta": "ابدأ التعلم",
+      "i18n-tab-discover": "استكشف",
+      "i18n-tab-mycourses": "مقرراتي",
+      "i18n-filter-all": "الكل",
+      "i18n-filter-math": "الرياضيات",
+      "i18n-filter-cs": "علوم الحاسوب",
+      "i18n-filter-sci": "العلوم",
+      "i18n-filter-arabic": "العربية والإنسانيات",
+      "i18n-filter-biz": "الأعمال",
+      "i18n-tag-math": "الرياضيات",
+      "i18n-h3-math": "النهايات والاتصال",
+      "i18n-p-math": "أتقن النهايات من جانب واحد، والخطوط المقاربة، والاتصال من خلال شروحات مرئية خطوة بخطوة.",
+      "i18n-tag-cs": "علوم الحاسوب",
+      "i18n-db-t1": "الطلاب",
+      "i18n-db-r1": "الرقم · الاسم · التخصص",
+      "i18n-db-t2": "التسجيلات",
+      "i18n-db-r2": "رقم_الطالب · رقم_المقرر",
+      "i18n-db-t3": "المقررات",
+      "i18n-db-r3": "الرقم · العنوان · الساعات",
+      "i18n-db-panel-label": "الصيغة القياسية",
+      "i18n-h3-db": "تسوية قواعد البيانات",
+      "i18n-p-db": "حوّل جداول البيانات الفوضوية إلى جداول علائقية منظمة، صيغة قياسية تلو الأخرى.",
+      "i18n-tag-bio": "الأحياء",
+      "i18n-h3-bio": "تركيب الخلية",
+      "i18n-p-bio": "استكشف عضيات الخلية طبقة تلو طبقة، من الغشاء إلى النواة.",
+      "i18n-tag-phys": "الفيزياء",
+      "i18n-h3-phys": "قوانين نيوتن",
+      "i18n-p-phys": "اشعر بقوى الدفع والجذب وراء كل مسألة حركة.",
+      "i18n-tag-arabiclang": "اللغة العربية",
+      "i18n-h3-arabiclang": "الصرف العربي — Arabic Morphology",
+      "i18n-p-arabiclang": "حلّل الكلمات إلى جذرها ووزنها، بالعربية والإنجليزية جنباً إلى جنب.",
+      "i18n-tag-biz": "الأعمال",
+      "i18n-h3-biz": "الوسط والتباين",
+      "i18n-p-biz": "حوّل البيانات الخام إلى قرارات باستخدام المقاييس الإحصائية الأساسية.",
+      "i18n-footer": "&copy; 2026 مسار — طريقك خلال الجامعة."
+    }
+  };
+
+  function setLanguage(lang){
+    var dict = translations[lang];
+    for (var id in dict){
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = dict[id];
+    }
+
+    document.body.classList.toggle('lang-ar', lang === 'ar');
+    document.documentElement.setAttribute('lang', lang);
+
+    document.getElementById('langBtnEn').classList.toggle('active', lang === 'en');
+    document.getElementById('langBtnAr').classList.toggle('active', lang === 'ar');
+
+    try { localStorage.setItem('masar-lang', lang); } catch (e) {}
+  }
+
+  (function(){
+    var saved = 'en';
+    try { saved = localStorage.getItem('masar-lang') || 'en'; } catch (e) {}
+    setLanguage(saved);
+  })();
+</script>
 
 </body>
 </html>
