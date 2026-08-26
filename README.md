@@ -9,7 +9,7 @@
 
 ---
 
-## 📖 Table of Contents
+##  Table of Contents
 
 - [Description](#-description)
 - [Why We Built This](#-why-we-built-this)
@@ -26,7 +26,7 @@
 
 ---
 
-## 📌 Description
+##  Description
 
 **MASAR** (Arabic: مسار, "path") is a multi-agent AI platform built for Omani university students. Instead of delivering the same static lecture, PDF, or course structure to every learner, MASAR deploys a coordinated system of specialized AI agents that observe how a student engages with material, diagnose where they're struggling, and adapt content, pacing, and format in real time.
 
@@ -36,7 +36,7 @@ MASAR was built for the **AI Agent MVP Challenge**, in partnership with **Riyada
 
 ---
 
-## 🎯 Why We Built This
+##  Why We Built This
 
 Behind every Omani university student who opens an online lecture and closes it within five minutes lies one overlooked cause: no one has ever asked them *how* they learn. Internet access, platforms, and content all exist — yet thousands of students still disengage, and every course drop-off represents tuition paid, time invested, and confidence lost.
 
@@ -46,16 +46,16 @@ MASAR exists to close that gap between **access to education** and **actually le
 
 ## ✨ Key Features
 
-- 🧠 **Adaptive Learning Path** — content, difficulty, and pacing adjust to each student in real time
-- 🤖 **Multi-Agent System** — an orchestrator (LLM) coordinates specialized Diagnostic, Content, and Engagement agents
-- 💬 **Companion Chat** — a conversational AI companion available throughout the course
-- 📊 **Lecturer Analytics Portal** — engagement trends and at-risk-student flags for instructors
-- 🔒 **Secure Data Handling** — student data stored in an encrypted, access-controlled cloud database
-- 🇴🇲 **Local Context (Roadmap)** — future support for the Omani dialect and locally-tuned AI
+-  **Adaptive Learning Path** — content, difficulty, and pacing adjust to each student in real time
+-  **Multi-Agent System** — an orchestrator (LLM) coordinates specialized Diagnostic, Content, and Engagement agents
+-  **Companion Chat** — a conversational AI companion available throughout the course
+-  **Lecturer Analytics Portal** — engagement trends and at-risk-student flags for instructors
+-  **Secure Data Handling** — student data stored in an encrypted, access-controlled cloud database
+-  **Local Context (Roadmap)** — future support for the Omani dialect and locally-tuned AI
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -68,7 +68,7 @@ MASAR exists to close that gap between **access to education** and **actually le
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 
 1. The student shares a goal and interacts with course material through MASAR.
 2. The **Diagnostic Agent** analyzes their current level from quiz results and engagement signals.
@@ -78,7 +78,7 @@ MASAR exists to close that gap between **access to education** and **actually le
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 > This project is currently at the MVP / concept-validation stage for the AI Agent MVP Challenge. Setup instructions will be added as the technical build progresses.
 
@@ -100,7 +100,7 @@ npm run dev
 
 ---
 
-## 💡 Usage
+##  Usage
 
 Once running, students can:
 - Set a learning goal and receive a personalized path
@@ -114,7 +114,7 @@ Lecturers and institutions can:
 
 ---
 
-## 🧩 Challenges We Faced
+##  Challenges We Faced
 
 - Designing agent **decision logic** for when the system should act autonomously versus escalate to a human
 - Balancing **personalization** with **student data privacy**
@@ -122,7 +122,7 @@ Lecturers and institutions can:
 
 ---
 
-## 🗺 Roadmap
+##  Roadmap
 
 - [ ] Local AI tuned for Omani language, culture, and educational context
 - [ ] Lock-screen micro-content and reminders
@@ -145,7 +145,7 @@ Lecturers and institutions can:
 
 ---
 
-## 🙏 Acknowledgements
+##  Acknowledgements
 
 - [Riyada](https://riyada.om) — Youth entrepreneurship ecosystem
 - Youth Center (مركز الشباب) — Program host
@@ -153,6 +153,6 @@ Lecturers and institutions can:
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details, or learn more at [choosealicense.com](https://choosealicense.com/).
