@@ -1,4 +1,5 @@
 # MASAR
+Multi Agentic Skill Adaptive Roadmap
 
 > An adaptive AI classroom that remembers you between sessions.
 
