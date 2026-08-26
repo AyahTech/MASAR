@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masar — Discover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-deep:#53358F;
+    --purple-deep-2:#3E2870;
+    --purple:#8F87F1;
+    --lavender:#C68EFD;
+    --pink:#E9A5F1;
+    --blush:#FED2E2;
+    --ink:#231A38;
+    --grey:#6E6580;
+    --grey-soft:#9A93AC;
+    --line:#EDE8F9;
+    --white:#FFFFFF;
+    --card-shadow: 0 1px 2px rgba(35,26,56,.04), 0 12px 32px -12px rgba(83,53,143,.18);
+    --card-shadow-hover: 0 1px 2px rgba(35,26,56,.05), 0 22px 44px -14px rgba(83,53,143,.28);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 520px at 12% -8%, rgba(143,135,241,.16), transparent 60%),
+      radial-gradient(900px 500px at 92% 8%, rgba(233,165,241,.14), transparent 55%),
+      linear-gradient(180deg, #FCFBFF 0%, #FBF8FF 45%, #FDF3F8 100%);
+    min-height:100vh;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+  img{ display:block; }
+
+  /* ---------------- Header ---------------- */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    max-width:1180px;
+    margin:0 auto;
+    padding:26px 32px 8px;
+  }
+  .brand{ display:flex; align-items:center; gap:14px; }
+  .brand img{ width:52px; height:52px; border-radius:15px; box-shadow:0 8px 20px -6px rgba(83,53,143,.5); }
+  .brand span{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight:800;
+    font-size:23px;
+    letter-spacing:0.01em;
+    color:var(--purple-deep-2);
+  }
+
+  .header-actions{ display:flex; align-items:center; gap:10px; }
+  .lang-toggle{
+    display:flex; align-items:center; gap:2px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:4px;
+    font-size:12.5px;
+    font-weight:600;
+    box-shadow:0 1px 2px rgba(35,26,56,.03);
+  }
+  .lang-toggle span{
+    padding:6px 12px;
+    border-radius:999px;
+    color:var(--grey-soft);
+  }
+  .lang-toggle span.active{
+    background:var(--purple-deep);
+    color:#fff;
+  }
+  .lang-toggle span.ar{ font-family:'Tajawal', sans-serif; font-weight:700; }
+
+  .btn-login{
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--purple-deep);
+    background:#fff;
+    border:1.5px solid #E4DBFB;
+    padding:9px 20px;
+    border-radius:999px;
+    transition:all .15s ease;
+  }
+  .btn-login:hover{ background:var(--purple-deep); color:#fff; border-color:var(--purple-deep); }
+
+  /* ---------------- Hero ---------------- */
+  .hero{
+    position:relative;
+    max-width:1180px;
+    margin:0 auto;
+    padding:56px 32px 44px;
+    text-align:center;
+  }
+
+  .route-svg{
+    position:absolute;
+    top:-10px; left:50%;
+    transform:translateX(-50%);
+    width:min(920px, 92%);
+    height:auto;
+    z-index:0;
+    opacity:.55;
+  }
+
+  .hero h1{
+    position:relative;
+    z-index:1;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight:800;
+    font-size:44px;
+    line-height:1.14;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+    max-width:640px;
+    margin:0 auto 30px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(100deg, var(--purple-deep) 0%, var(--purple) 45%, var(--pink) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .prompt-card{
+    position:relative;
+    z-index:1;
+    max-width:700px;
+    margin:0 auto;
+    background:var(--white);
+    border-radius:26px;
+    padding:22px 24px 18px;
+    box-shadow:var(--card-shadow);
+    border:1px solid #F2ECFE;
+    text-align:left;
+  }
+
+  .prompt-top{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+
+  .greet-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:600; color:var(--grey);
+    background:#F8F6FE;
+    border-radius:999px;
+    padding:5px 12px 5px 5px;
+  }
+  .greet-chip .avatar{
+    width:22px; height:22px; border-radius:50%;
+    background:linear-gradient(135deg,var(--purple),var(--pink));
+  }
+
+  .agents-chip{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:13px; font-weight:600; color:var(--grey);
+    background:#F8F6FE;
+    border-radius:999px;
+    padding:6px 12px 6px 14px;
+  }
+  .agents-chip .agents-label{ white-space:nowrap; }
+  .agents-avatars{ display:flex; align-items:center; }
+  .agent-avatar{
+    width:28px; height:28px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid #F8F6FE;
+    box-shadow:0 2px 6px -1px rgba(83,53,143,.3);
+    position:relative;
+  }
+  .agent-avatar + .agent-avatar{ margin-left:-9px; }
+  .agent-teacher{ background:linear-gradient(135deg, var(--purple-deep), var(--purple)); z-index:2; }
+  .agent-student{ background:linear-gradient(135deg, var(--pink), var(--lavender)); z-index:1; }
+  .agents-chip .icon-btn{
+    width:26px; height:26px;
+    color:var(--grey-soft);
+  }
+  .agents-chevron{ color:var(--grey-soft); flex-shrink:0; }
+
+  .prompt-text{
+    font-size:15.5px;
+    color:var(--ink);
+    line-height:1.75;
+  }
+  .prompt-text .placeholder{ color:#B9B1CE; }
+  .prompt-text .examples{
+    margin-top:2px;
+    color:#B9B1CE;
+    font-size:14px;
+    line-height:1.8;
+  }
+
+  .prompt-footer{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .prompt-footer-left{ display:flex; align-items:center; gap:10px; }
+  .icon-btn{
+    width:36px; height:36px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+    color:var(--grey-soft);
+    background:transparent;
+  }
+  .mode-pill{
+    display:flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:600;
+    color:var(--purple-deep);
+    background:#F4EFFE;
+    border:1px solid #E7DCFC;
+    padding:8px 14px;
+    border-radius:999px;
+  }
+  .prompt-footer-right{ display:flex; align-items:center; gap:12px; }
+  .mentor-avatar{
+    width:34px; height:34px; border-radius:50%;
+    background:linear-gradient(135deg, var(--purple-deep), var(--purple));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cta-btn{
+    display:flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:700;
+    color:#fff;
+    background:linear-gradient(100deg, var(--purple-deep) 0%, var(--purple) 100%);
+    padding:11px 22px;
+    border-radius:999px;
+    box-shadow:0 10px 24px -10px rgba(83,53,143,.55);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta-btn:hover{ transform:translateY(-1px); box-shadow:0 14px 28px -10px rgba(83,53,143,.6); }
+
+  /* ---------------- Tabs & filters ---------------- */
+  .catalog{ max-width:1180px; margin:0 auto; padding:50px 32px 90px; }
+
+  .catalog-top{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+    margin-bottom:26px;
+  }
+  .tabs{
+    display:flex; align-items:center; gap:4px;
+    background:#F4F1FC;
+    padding:4px;
+    border-radius:999px;
+  }
+  .tabs a{
+    font-size:14px; font-weight:700;
+    padding:9px 20px;
+    border-radius:999px;
+    color:var(--grey);
+    display:flex; align-items:center; gap:7px;
+  }
+  .tabs a.active{
+    background:var(--white);
+    color:var(--purple-deep-2);
+    box-shadow:0 4px 12px -4px rgba(83,53,143,.25);
+  }
+
+  .filters{ display:flex; gap:8px; flex-wrap:wrap; }
+  .filters span{
+    font-size:12.5px; font-weight:600;
+    padding:8px 15px;
+    border-radius:999px;
+    color:var(--grey);
+    background:var(--white);
+    border:1px solid var(--line);
+  }
+  .filters span.active{
+    background:var(--purple-deep);
+    border-color:var(--purple-deep);
+    color:#fff;
+  }
+
+  /* ---------------- Card grid ---------------- */
+  .grid-top{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    margin-bottom:22px;
+  }
+  .grid-bottom{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+
+  .course-card{
+    background:var(--white);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:var(--card-shadow);
+    border:1px solid #F2ECFE;
+    transition:transform .18s ease, box-shadow .18s ease;
+    display:flex; flex-direction:column;
+  }
+  .course-card:hover{ transform:translateY(-3px); box-shadow:var(--card-shadow-hover); }
+
+  .card-visual{
+    position:relative;
+    height:190px;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .grid-bottom .card-visual{ height:140px; }
+
+  .tag-pill{
+    position:absolute; top:14px; left:14px;
+    font-size:11.5px; font-weight:700;
+    padding:6px 12px;
+    border-radius:999px;
+    z-index:2;
+  }
+  .tag-light{ background:#F1EAFE; color:var(--purple-deep); }
+  .tag-blush{ background:#FFE3EC; color:#8A3D75; }
+  .tag-glass{ background:rgba(255,255,255,.16); color:#fff; backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.25); }
+
+  .stat-pills{
+    position:absolute; bottom:12px; right:12px;
+    display:flex; gap:6px; z-index:2;
+  }
+  .stat-pill{
+    display:flex; align-items:center; gap:4px;
+    font-size:11px; font-weight:600;
+    color:#fff;
+    background:rgba(35,26,56,.55);
+    backdrop-filter:blur(4px);
+    padding:5px 9px;
+    border-radius:999px;
+  }
+
+  .card-body{ padding:18px 20px 20px; }
+  .card-body h3{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:16.5px; font-weight:700;
+    color:var(--ink);
+    margin-bottom:6px;
+    letter-spacing:-0.01em;
+  }
+  .grid-bottom .card-body h3{ font-size:15px; }
+  .card-body p{
+    font-size:12.8px;
+    color:var(--grey);
+    line-height:1.55;
+  }
+
+  /* ---- visual: math (dark) ---- */
+  .visual-math{ background:linear-gradient(155deg, #2B1E4D 0%, #4B2E83 65%, #6A4CB8 100%); }
+  .visual-math svg{ width:100%; height:100%; }
+
+  /* ---- visual: database ---- */
+  .visual-db{ background:linear-gradient(155deg, #F5F1FF 0%, #EFE8FE 100%); padding:48px 20px 18px; }
+  .db-wrap{ display:flex; align-items:center; gap:26px; width:100%; }
+  .db-tables{ display:flex; flex-direction:column; gap:10px; flex:1; }
+  .db-table{
+    background:#fff; border:1.5px solid #E1D5FA; border-radius:10px;
+    padding:7px 10px; font-size:10.5px; font-weight:700; color:var(--purple-deep-2);
+    box-shadow:0 3px 8px -3px rgba(83,53,143,.18);
+  }
+  .db-table .row{ font-weight:500; color:var(--grey-soft); font-size:9.5px; margin-top:3px; }
+  .db-panel{
+    background:#fff; border-radius:12px; padding:10px 12px;
+    box-shadow:0 4px 14px -6px rgba(83,53,143,.25);
+    font-size:10px; color:var(--grey); min-width:96px;
+  }
+  .db-panel .lbl{ font-weight:700; color:var(--purple-deep); margin-bottom:6px; font-size:10px;}
+  .db-steps{ display:flex; gap:4px; }
+  .db-steps span{ flex:1; text-align:center; padding:4px 0; border-radius:6px; background:#F1EAFE; color:var(--purple-deep); font-weight:700; font-size:9px;}
+  .db-steps span.on{ background:var(--purple-deep); color:#fff; }
+
+  /* ---- visual: biology ---- */
+  .visual-bio{ background:linear-gradient(155deg,#FFF0F6 0%, #FCE6F3 100%); }
+
+  /* ---- visual: physics ---- */
+  .visual-phys{ background:linear-gradient(155deg,#F1EEFE 0%, #E9E2FC 100%); }
+
+  /* ---- visual: arabic ---- */
+  .visual-arabic{ background:linear-gradient(155deg,#FFEAF2 0%, #FFF0F6 100%); flex-direction:column; gap:6px; }
+  .arabic-root{ font-family:'Tajawal', sans-serif; font-weight:700; font-size:34px; color:var(--purple-deep-2); direction:rtl; }
+  .arabic-pattern{ display:flex; gap:6px; }
+  .arabic-pattern span{
+    font-family:'Tajawal', sans-serif; font-weight:700; font-size:12px;
+    background:#fff; border:1.5px solid #F4C9DE; color:#8A3D75;
+    padding:3px 10px; border-radius:8px;
+  }
+
+  /* ---- visual: business ---- */
+  .visual-biz{ background:linear-gradient(155deg,#F4F1FF 0%, #ECE4FE 100%); }
+
+  footer{
+    max-width:1180px; margin:0 auto; padding:10px 32px 56px;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    text-align:center;
+  }
+  footer img{ width:26px; height:26px; border-radius:8px; opacity:.85; }
+  footer p{ font-size:12px; color:var(--grey-soft); }
+
+  @media (max-width: 880px){
+    .grid-top{ grid-template-columns:1fr; }
+    .grid-bottom{ grid-template-columns:1fr 1fr; }
+    .hero h1{ font-size:32px; }
+    header{ padding:20px 20px 4px; }
+    .hero{ padding:40px 20px 32px; }
+    .catalog{ padding:36px 20px 70px; }
+  }
+  @media (max-width: 560px){
+    .grid-bottom{ grid-template-columns:1fr; }
+    .catalog-top{ flex-direction:column; align-items:flex-start; }
+    .prompt-footer{ flex-wrap:wrap; gap:14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <img src="masar-mark.png" alt="Masar">
+      <span>MASAR</span>
+    </div>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <span class="active">EN</span>
+        <span class="ar">عربي</span>
+      </div>
+      <a class="btn-login" href="#">Log in</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <svg class="route-svg" viewBox="0 0 920 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="routeGrad" x1="0" y1="0" x2="920" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#8F87F1"/>
+          <stop offset="0.5" stop-color="#C68EFD"/>
+          <stop offset="1" stop-color="#E9A5F1"/>
+        </linearGradient>
+      </defs>
+      <path d="M20,110 C 160,10 260,10 340,70 C 420,130 520,130 600,60 C 670,0 780,0 900,55"
+            stroke="url(#routeGrad)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round"/>
+      <circle cx="20" cy="110" r="5" fill="#8F87F1"/>
+      <circle cx="340" cy="70" r="4" fill="#C68EFD"/>
+      <circle cx="600" cy="60" r="4" fill="#C68EFD"/>
+      <circle cx="900" cy="55" r="5" fill="#E9A5F1"/>
+    </svg>
+
+    <h1>Your <span class="grad">path</span> to mastering every course.</h1>
+
+    <div class="prompt-card">
+      <div class="prompt-top">
+        <div class="greet-chip">
+          <span class="avatar"></span>
+          Hi, Learner
+        </div>
+        <div class="agents-chip">
+          <span class="agents-label">Ready to learn together?</span>
+          <div class="agents-avatars">
+            <span class="agent-avatar agent-teacher" title="AI Teacher">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+            </span>
+            <span class="agent-avatar agent-student" title="AI Student">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z"/></svg>
+            </span>
+          </div>
+          <span class="icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+          </span>
+          <svg class="agents-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="prompt-text">
+        <div class="placeholder">Ask me anything about your courses&hellip;</div>
+        <div class="examples">
+          "Explain limits before my Calculus exam"<br>
+          "Summarize Chapter 4 — الخلية (Cell Biology)"<br>
+          "Quiz me on database normalization"
+        </div>
+      </div>
+      <div class="prompt-footer">
+        <div class="prompt-footer-left">
+          <span class="icon-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21.4 11.2 12.6 20a5 5 0 0 1-7.1-7.1l8.5-8.5a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 1 1-2.8-2.8l7.8-7.8"/></svg>
+          </span>
+          <span class="mode-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 8-4 8-4-8 4 2 4-2z"/></svg>
+            Adaptive Mode
+          </span>
+        </div>
+        <div class="prompt-footer-right">
+          <span class="mentor-avatar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 9.5 8.5 3 11l6.5 2.5L12 20l2.5-6.5L21 11l-6.5-2.5L12 2z"/></svg>
+          </span>
+          <a class="cta-btn" href="#">
+            Start Learning
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="catalog">
+    <div class="catalog-top">
+      <div class="tabs">
+        <a class="active">Discover</a>
+        <a>My Courses</a>
+      </div>
+      <div class="filters">
+        <span class="active">All</span>
+        <span>Mathematics</span>
+        <span>Computer Science</span>
+        <span>Sciences</span>
+        <span>Arabic &amp; Humanities</span>
+        <span>Business</span>
+      </div>
+    </div>
+
+    <div class="grid-top">
+
+      <!-- Featured: Math -->
+      <div class="course-card">
+        <div class="card-visual visual-math">
+          <span class="tag-pill tag-glass">Mathematics</span>
+          <div class="stat-pills">
+            <span class="stat-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              6.2k
+            </span>
+            <span class="stat-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              82
+            </span>
+          </div>
+          <svg viewBox="0 0 400 190" width="88%" height="80%">
+            <defs>
+              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#C68EFD" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#C68EFD" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <line x1="30" y1="160" x2="380" y2="160" stroke="#8F87F1" stroke-opacity="0.35" stroke-width="1.5"/>
+            <line x1="30" y1="20" x2="30" y2="160" stroke="#8F87F1" stroke-opacity="0.35" stroke-width="1.5"/>
+            <line x1="30" y1="55" x2="380" y2="55" stroke="#E9A5F1" stroke-dasharray="3 6" stroke-width="1.5" stroke-opacity="0.8"/>
+            <path d="M40,155 C 110,150 150,60 230,56 C 290,53 330,55 375,55" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="230" cy="56" r="20" fill="url(#glow)"/>
+            <circle cx="230" cy="56" r="5" fill="#fff"/>
+            <text x="335" y="48" fill="#E9A5F1" font-size="12" font-family="Inter" font-weight="600">L</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <h3>Limits &amp; Continuity</h3>
+          <p>Master one-sided limits, asymptotes, and continuity with visual, step-by-step walkthroughs.</p>
+        </div>
+      </div>
+
+      <!-- Featured: Database -->
+      <div class="course-card">
+        <div class="card-visual visual-db">
+          <span class="tag-pill tag-light">Computer Science</span>
+          <div class="stat-pills">
+            <span class="stat-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              4.1k
+            </span>
+            <span class="stat-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              56
+            </span>
+          </div>
+          <div class="db-wrap">
+            <div class="db-tables">
+              <div class="db-table">Students<div class="row">id · name · major</div></div>
+              <div class="db-table">Enrollments<div class="row">student_id · course_id</div></div>
+              <div class="db-table">Courses<div class="row">id · title · credits</div></div>
+            </div>
+            <div class="db-panel">
+              <div class="lbl">Normal Form</div>
+              <div class="db-steps"><span>1NF</span><span>2NF</span><span class="on">3NF</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Database Normalization</h3>
+          <p>Turn messy spreadsheets into clean relational tables, one normal form at a time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-bottom">
+
+      <!-- Biology -->
+      <div class="course-card">
+        <div class="card-visual visual-bio">
+          <span class="tag-pill tag-blush">Biology</span>
+          <div class="stat-pills">
+            <span class="stat-pill">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              3.4k
+            </span>
+          </div>
+          <svg width="70%" height="80%" viewBox="0 0 160 160">
+            <ellipse cx="80" cy="80" rx="62" ry="52" fill="none" stroke="#E9A5F1" stroke-width="3"/>
+            <circle cx="80" cy="80" r="22" fill="#8F87F1" fill-opacity="0.85"/>
+            <circle cx="88" cy="76" r="6" fill="#3E2870"/>
+            <ellipse cx="45" cy="55" rx="10" ry="6" fill="#C68EFD"/>
+            <ellipse cx="118" cy="100" rx="12" ry="7" fill="#C68EFD"/>
+            <ellipse cx="55" cy="112" rx="9" ry="5" fill="#FED2E2" stroke="#E9A5F1"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <h3>Cell Structure</h3>
+          <p>Explore organelles layer by layer, from membrane to nucleus.</p>
+        </div>
+      </div>
+
+      <!-- Physics -->
+      <div class="course-card">
+        <div class="card-visual visual-phys">
+          <span class="tag-pill tag-light">Physics</span>
+          <div class="stat-pills">
+            <span class="stat-pill">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              2.9k
+            </span>
+          </div>
+          <svg width="70%" height="75%" viewBox="0 0 160 140">
+            <rect x="62" y="55" width="40" height="40" rx="6" fill="#53358F"/>
+            <line x1="102" y1="75" x2="150" y2="75" stroke="#8F87F1" stroke-width="3" stroke-linecap="round"/>
+            <path d="M150,75 l-10,-6 m10,6 l-10,6" stroke="#8F87F1" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="62" y1="75" x2="18" y2="75" stroke="#E9A5F1" stroke-width="3" stroke-linecap="round"/>
+            <path d="M18,75 l10,-6 m-10,6 l10,6" stroke="#E9A5F1" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="82" y1="55" x2="82" y2="22" stroke="#C68EFD" stroke-width="3" stroke-linecap="round"/>
+            <path d="M82,22 l-6,10 m6,-10 l6,10" stroke="#C68EFD" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <h3>Newton&rsquo;s Laws</h3>
+          <p>Feel the push and pull behind every motion problem.</p>
+        </div>
+      </div>
+
+      <!-- Arabic -->
+      <div class="course-card">
+        <div class="card-visual visual-arabic">
+          <span class="tag-pill tag-blush">Arabic Language</span>
+          <div class="stat-pills">
+            <span class="stat-pill">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              5.0k
+            </span>
+          </div>
+          <div class="arabic-root">ك ت ب</div>
+          <div class="arabic-pattern"><span>فَعَلَ</span><span>كَاتِب</span></div>
+        </div>
+        <div class="card-body">
+          <h3>Arabic Morphology — الصرف</h3>
+          <p>Break words to their root pattern, in Arabic and English side by side.</p>
+        </div>
+      </div>
+
+      <!-- Business -->
+      <div class="course-card">
+        <div class="card-visual visual-biz">
+          <span class="tag-pill tag-light">Business</span>
+          <div class="stat-pills">
+            <span class="stat-pill">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              2.2k
+            </span>
+          </div>
+          <svg width="75%" height="75%" viewBox="0 0 160 120">
+            <path d="M10,100 C 40,100 45,20 80,20 C 115,20 120,100 150,100" fill="none" stroke="#53358F" stroke-width="3"/>
+            <path d="M60,100 L60,60 Q80,20 100,60 L100,100 Z" fill="#C68EFD" fill-opacity="0.4"/>
+            <line x1="10" y1="100" x2="150" y2="100" stroke="#B9B1CE" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <h3>Mean &amp; Variance</h3>
+          <p>Turn raw data into decisions with core statistical measures.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <img src="masar-mark.png" alt="Masar">
+    <p>&copy; 2026 Masar — your path through university.</p>
+  </footer>
+
+</body>
+</html>

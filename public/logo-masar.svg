@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" width="720" height="160">
+  <defs>
+    <linearGradient id="masarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#115E59"/>
+    </linearGradient>
+  </defs>
+  <!-- Geometric mark -->
+  <g transform="translate(24, 24)">
+    <rect x="0" y="0" width="112" height="112" rx="24" fill="url(#masarGrad)"/>
+    <path d="M28 84 L28 44 L56 68 L84 44 L84 84" stroke="white" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="56" cy="38" r="8" fill="white"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="164" y="102" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="84" font-weight="700" fill="#0F172A" letter-spacing="-2">MASAR</text>
+  <text x="168" y="132" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="500" fill="#64748B" letter-spacing="3">ADAPTIVE LEARNING</text>
+</svg>
