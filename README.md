@@ -49,7 +49,9 @@ MASAR exists to close that gap between **access to education** and **actually le
 -  **Adaptive Learning Path** — content, difficulty, and pacing adjust to each student in real time
 -  **Multi-Agent System** — an orchestrator (LLM) coordinates specialized Diagnostic, Content, and Engagement agents
 -  **Companion Chat** — a conversational AI companion available throughout the course
--  **Lecturer Analytics Portal** — engagement trends and at-risk-student flags for instructors
+
+Future Features:
+-  **Lecturer Analytics Portal** — engagement trends and at-risk-student flags for instructors 
 -  **Secure Data Handling** — student data stored in an encrypted, access-controlled cloud database
 -  **Local Context (Roadmap)** — future support for the Omani dialect and locally-tuned AI
 
@@ -122,7 +124,7 @@ Lecturers and institutions can:
 
 ---
 
-##  Roadmap
+##  Roadmap (Future Vision to unlock)
 
 - [ ] Local AI tuned for Omani language, culture, and educational context
 - [ ] Lock-screen micro-content and reminders
@@ -138,7 +140,7 @@ Lecturers and institutions can:
 
 | Name | Role |
 |---|---|
-| آية الشنفري (Aya Al Shanfari) | Electrical Engineering |
+| آية الشنفري (Ayah Al Shanfari) |   Electrical and Computer Engineering |
 | رتاج الشنفري (Retaj Al Shanfari) | Artificial Intelligence |
 | هدى الشنفري (Huda Al Shanfari) | Artificial Intelligence |
 | خديجة البلوشي (Khadija Al Balushi) | Artificial Intelligence |
@@ -149,7 +151,7 @@ Lecturers and institutions can:
 
 - [Riyada](https://riyada.om) — Youth entrepreneurship ecosystem
 - Youth Center (مركز الشباب) — Program host
-- Dhofar — Program partner
+
 
 ---
 
